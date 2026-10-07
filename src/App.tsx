@@ -1,4 +1,5 @@
 import "./App.css";
+import ReviewPieChart from "./components/charts/ReviewPieChart";
 
 const App = () => {
   return (
@@ -8,7 +9,9 @@ const App = () => {
           <h1>Tableau de bord Slice of Pi</h1>
         </header>
         <section aria-label="Filtres du tableau de bord"></section>
-        <main></main>
+        <main>
+          <ReviewPieChart />
+        </main>
         <footer>
           <p>© 2026 A Slice of Pi</p>
         </footer>
