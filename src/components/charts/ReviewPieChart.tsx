@@ -10,17 +10,16 @@ import reviews from "../../data/review_data.json";
 import type { Review } from "../../types.ts";
 import { CHART_COLORS } from "../../constants";
 import { getSentimentCounts } from "../../utils";
+import { ChartCard } from "../../common";
 
 const sentimentCounts = getSentimentCounts(reviews as Review[]);
 
 const ReviewPieChart = () => {
   return (
-    <div>
-      <h2>Review Sentiment Distribution</h2>
-      <p>
-        This chart shows the distribution of customer reviews based on their
-        sentiment.
-      </p>
+    <ChartCard
+      title="Review Sentiment Distribution"
+      subtitle="This chart shows the distribution of customer reviews based on their sentiment."
+    >
       <ResponsiveContainer width="100%" height={400}>
         <PieChart>
           <Pie
@@ -44,7 +43,8 @@ const ReviewPieChart = () => {
           <Legend />
         </PieChart>
       </ResponsiveContainer>
-    </div>
+    </ChartCard>
   );
 };
+
 export default ReviewPieChart;
