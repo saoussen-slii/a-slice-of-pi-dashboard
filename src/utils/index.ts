@@ -1,2 +1,5 @@
 export { getFrequencyCount } from "./getFrequencyCount.ts";
-export { calculateTotalRevenue } from "./calculateTotalRevenue.ts";
+export {
+  calculateTotalRevenue,
+  calculateTotalRevenueByMonth,
+} from "./calculateTotalRevenue.ts";

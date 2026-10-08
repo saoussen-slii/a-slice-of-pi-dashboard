@@ -1,6 +1,11 @@
 import "./App.css";
-import { ReviewPieChart, StoreBarChart } from "./components/charts";
+import {
+  ReviewPieChart,
+  StoreBarChart,
+  MonthlyRevenueLineChart,
+} from "./components/charts";
 import TotalRevenueCard from "./components/kpi";
+
 const App = () => {
   return (
     <>
@@ -13,6 +18,7 @@ const App = () => {
           <ReviewPieChart />
           <StoreBarChart />
           <TotalRevenueCard />
+          <MonthlyRevenueLineChart />
         </main>
         <footer>
           <p>© 2026 A Slice of Pi</p>
