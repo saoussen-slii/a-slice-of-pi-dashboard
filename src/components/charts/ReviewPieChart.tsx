@@ -16,10 +16,7 @@ const sentimentCounts = getFrequencyCount(reviews as Review[], "sentiment");
 
 const ReviewPieChart = () => {
   return (
-    <ChartCard
-      title="Review Sentiment Distribution"
-      subtitle="This chart shows the distribution of customer reviews based on their sentiment."
-    >
+    <ChartCard title="Review Sentiment Distribution">
       <ResponsiveContainer width="100%" height={400}>
         <PieChart>
           <Pie
@@ -32,7 +29,7 @@ const ReviewPieChart = () => {
             fill="#8884d8"
             label
           >
-            {sentimentCounts.map((entry, index) => (
+            {sentimentCounts.map((__, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={CHART_COLORS[index % CHART_COLORS.length]}
