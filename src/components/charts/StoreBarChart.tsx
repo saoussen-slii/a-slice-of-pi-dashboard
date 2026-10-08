@@ -10,7 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import orders from "../../data/order_data.json";
+import { orders } from "../../data";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
 import type { Order } from "../../types.ts";

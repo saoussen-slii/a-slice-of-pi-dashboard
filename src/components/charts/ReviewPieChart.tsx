@@ -6,7 +6,7 @@ import {
   Cell,
   Tooltip,
 } from "recharts";
-import reviews from "../../data/review_data.json";
+import { reviews } from "../../data";
 import type { Review } from "../../types.ts";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";

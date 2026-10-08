@@ -1,6 +1,5 @@
 import { calculateTotalRevenue } from "../../utils";
-import orders from "../../data/order_data.json";
-import prices from "../../data/pricing_data.json";
+import { orders, prices } from "../../data";
 import type { Order } from "../../types.ts";
 
 const TotalRevenueCard = () => {
