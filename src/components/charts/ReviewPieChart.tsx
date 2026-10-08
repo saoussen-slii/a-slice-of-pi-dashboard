@@ -8,8 +8,8 @@ import {
 } from "recharts";
 import reviews from "../../data/review_data.json";
 import type { Review } from "../../types.ts";
-import { CHART_COLORS } from "../../constants/chartColors.ts";
-import { getSentimentCounts } from "../../utils/reviewUtil.ts";
+import { CHART_COLORS } from "../../constants";
+import { getSentimentCounts } from "../../utils";
 
 const sentimentCounts = getSentimentCounts(reviews as Review[]);
 
