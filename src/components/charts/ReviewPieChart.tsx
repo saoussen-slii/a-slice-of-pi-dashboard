@@ -16,10 +16,7 @@ const sentimentCounts = getFrequencyCount(reviews as Review[], "sentiment");
 
 const ReviewPieChart = () => {
   return (
-    <ChartCard
-      title="Review Sentiment Distribution"
-      subtitle="This chart shows the distribution of customer reviews based on their sentiment."
-    >
+    <ChartCard title="Review Sentiment Distribution">
       <ResponsiveContainer width="100%" height={400}>
         <PieChart>
           <Pie

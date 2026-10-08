@@ -19,10 +19,7 @@ const storeCounts = getFrequencyCount(orders as Order[], "store");
 
 const StoreBarChart = () => {
   return (
-    <ChartCard
-      title="Store Performance"
-      subtitle="This chart shows the performance of each store."
-    >
+    <ChartCard title="Store Performance">
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={storeCounts}
@@ -34,11 +31,18 @@ const StoreBarChart = () => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis
+            dataKey="name"
+            interval={0}
+            angle={-25}
+            textAnchor="end"
+            height={60}
+            className="responsive-x-axis"
+          />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="value">
+          <Bar dataKey="value" name="Number of Orders">
             {storeCounts.map((__, index) => (
               <Cell
                 key={`cell-${index}`}

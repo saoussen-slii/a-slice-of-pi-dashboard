@@ -11,7 +11,11 @@ const TotalRevenueCard = () => {
           orders as Order[],
           prices,
           2023,
-        ).toLocaleString()}
+        ).toLocaleString("en-CA", {
+          style: "currency",
+          currency: "CAD",
+          maximumFractionDigits: 0,
+        })}
       </p>
     </section>
   );

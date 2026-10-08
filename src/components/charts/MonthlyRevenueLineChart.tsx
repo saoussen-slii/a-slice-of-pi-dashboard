@@ -1,6 +1,5 @@
 import {
   LineChart,
-  Legend,
   ResponsiveContainer,
   CartesianGrid,
   XAxis,
@@ -21,10 +20,7 @@ const MonthlyRevenueLineChart = () => {
     prices,
   );
   return (
-    <ChartCard
-      title="Monthly Revenue"
-      subtitle="This chart shows the revenue generated each month for 2023."
-    >
+    <ChartCard title="Monthly Revenue">
       <ResponsiveContainer width="100%" height={400}>
         <LineChart
           data={monthlyRevenueData}
@@ -36,10 +32,13 @@ const MonthlyRevenueLineChart = () => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
+          <XAxis
+            dataKey="month"
+            className="responsive-x-axis"
+            tickFormatter={(month: string) => month.slice(0, 3)}
+          />
           <YAxis />
           <Tooltip />
-          <Legend />
           <Line
             type="monotone"
             dataKey="revenue"
