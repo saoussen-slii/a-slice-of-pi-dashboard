@@ -11,13 +11,14 @@ const App = () => {
     <>
       <div>
         <header>
-          <h1>Tableau de bord Slice of Pi</h1>
+          <h1>Slice of Pi Dashboard</h1>
         </header>
         <section aria-label="Filtres du tableau de bord"></section>
-        <main>
+        <main className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 p-4 md:grid-cols-2">
           <ReviewPieChart />
           <StoreBarChart />
           <TotalRevenueCard />
+
           <MonthlyRevenueLineChart />
         </main>
         <footer>

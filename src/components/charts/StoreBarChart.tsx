@@ -39,7 +39,7 @@ const StoreBarChart = () => {
           <Tooltip />
           <Legend />
           <Bar dataKey="value">
-            {storeCounts.map((entry, index) => (
+            {storeCounts.map((__, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={CHART_COLORS[index % CHART_COLORS.length]}

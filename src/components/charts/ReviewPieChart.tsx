@@ -32,7 +32,7 @@ const ReviewPieChart = () => {
             fill="#8884d8"
             label
           >
-            {sentimentCounts.map((entry, index) => (
+            {sentimentCounts.map((__, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={CHART_COLORS[index % CHART_COLORS.length]}

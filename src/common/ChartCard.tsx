@@ -5,7 +5,7 @@ interface ChartCardProps {
 }
 
 export const ChartCard = ({ title, subtitle, children }: ChartCardProps) => (
-  <section className="chart-card">
+  <section className="chart-card min-w-0 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
     <header>
       <h2>{title}</h2>
       <p>{subtitle}</p>
