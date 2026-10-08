@@ -1,1 +1,1 @@
-export { getSentimentCounts } from "./reviewUtil.ts";
+export { getFrequencyCount } from "./getFrequencyCount.ts";

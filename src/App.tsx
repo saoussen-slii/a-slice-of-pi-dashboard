@@ -1,5 +1,5 @@
 import "./App.css";
-import ReviewPieChart from "./components/charts/ReviewPieChart";
+import { ReviewPieChart, StoreBarChart } from "./components/charts";
 
 const App = () => {
   return (
@@ -11,6 +11,7 @@ const App = () => {
         <section aria-label="Filtres du tableau de bord"></section>
         <main>
           <ReviewPieChart />
+          <StoreBarChart />
         </main>
         <footer>
           <p>© 2026 A Slice of Pi</p>
