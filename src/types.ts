@@ -4,7 +4,7 @@ export type PizzaType =
   | "Cheese"
   | "Deluxe"
   | "Hawaiian"
-  | "MeatLovers"
+  | "Meatlovers"
   | "Pepperoni";
 
 export type StoreLocation =
@@ -35,3 +35,5 @@ export interface Review {
   date: string;
   message: string;
 }
+
+export type PriceGrid = Record<PizzaType, Record<PizzaSize, number>>;
