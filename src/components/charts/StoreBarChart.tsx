@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { ChartCard } from "../../common";
 import {
   BarChart,
@@ -10,16 +11,42 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { orders } from "../../data";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
-import type { Order } from "../../types.ts";
+import type { Order, PizzaSize, PizzaType } from "../../types.ts";
+import { PizzaFilters } from "../filters";
 
-const storeCounts = getFrequencyCount(orders as Order[], "store");
+interface StoreBarChartProps {
+  orders: Order[];
+}
 
-const StoreBarChart = () => {
+const StoreBarChart = ({ orders }: StoreBarChartProps) => {
+  const [pizzaType, setPizzaType] = useState<PizzaType | "">("");
+  const [pizzaSize, setPizzaSize] = useState<PizzaSize | "">("");
+  const filteredOrders = useMemo(
+    () =>
+      orders
+        .map((order) => ({
+          ...order,
+          items: order.items.filter(
+            (item) =>
+              (!pizzaType || item.type === pizzaType) &&
+              (!pizzaSize || item.size === pizzaSize),
+          ),
+        }))
+        .filter((order) => order.items.length > 0),
+    [orders, pizzaType, pizzaSize],
+  );
+  const storeCounts = getFrequencyCount(filteredOrders, "store");
+
   return (
     <ChartCard title="Store Performance">
+      <PizzaFilters
+        pizzaType={pizzaType}
+        pizzaSize={pizzaSize}
+        onPizzaTypeChange={setPizzaType}
+        onPizzaSizeChange={setPizzaSize}
+      />
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={storeCounts}

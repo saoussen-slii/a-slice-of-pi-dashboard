@@ -5,6 +5,10 @@ import {
   MonthlyRevenueLineChart,
 } from "./components/charts";
 import TotalRevenueCard from "./components/kpi";
+import { orders } from "./data";
+import type { Order } from "./types.ts";
+
+const allOrders = orders as Order[];
 
 const App = () => {
   return (
@@ -15,8 +19,6 @@ const App = () => {
         </h1>
       </header>
 
-      <section aria-label="Filtres du tableau de bord"></section>
-
       <main className="mx-auto grid w-full min-w-0 max-w-6xl grid-cols-1 gap-6 p-4 xl:grid-cols-2">
         <div className="xl:col-span-2">
           <TotalRevenueCard />
@@ -26,7 +28,7 @@ const App = () => {
           <MonthlyRevenueLineChart />
         </div>
 
-        <StoreBarChart />
+        <StoreBarChart orders={allOrders} />
         <ReviewPieChart />
       </main>
 
