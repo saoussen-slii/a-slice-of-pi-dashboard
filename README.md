@@ -2,12 +2,12 @@
 
 A responsive pizza-sales dashboard built with React, TypeScript, Vite, Tailwind
 CSS, and Recharts. It presents order, revenue, store, and customer-review data
-for 2023.
+for 2026.
 
 ## Features
 
 - Filter dashboard charts by an inclusive start and end date.
-- View total revenue for 2023. This KPI is intentionally independent of the
+- View total revenue for 2026. This KPI is intentionally independent of the
   date and pizza filters.
 - Explore monthly revenue in an area chart.
 - View order counts by store, with pizza type and size filters.
@@ -36,12 +36,12 @@ Vite prints the local development URL in the terminal.
 
 ## Available scripts
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the Vite development server. |
-| `npm run build` | Type-check and create a production build in `dist/`. |
-| `npm run preview` | Serve the production build locally. |
-| `npm run lint` | Run ESLint. |
+| Command           | Description                                          |
+| ----------------- | ---------------------------------------------------- |
+| `npm run dev`     | Start the Vite development server.                   |
+| `npm run build`   | Type-check and create a production build in `dist/`. |
+| `npm run preview` | Serve the production build locally.                  |
+| `npm run lint`    | Run ESLint.                                          |
 
 ## Data and filtering
 
@@ -54,7 +54,7 @@ Dashboard data is stored as JSON in `src/data/`:
 The date filter in `App.tsx` applies to orders and reviews passed to the charts.
 Since pizza items do not have individual dates, each item's date is the date of
 its containing order. The start and end dates are inclusive. The total revenue
-card continues to show revenue for all 2023 orders, regardless of the selected
+card continues to show revenue for all 2026 orders, regardless of the selected
 date range.
 
 The pizza type and size filters apply only to the Store Performance chart.
