@@ -22,7 +22,7 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
   const monthlyRevenueData = calculateTotalRevenueByMonth(orders, prices);
   return (
     <ChartCard title="Monthly Revenue">
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={260}>
         <LineChart
           data={monthlyRevenueData}
           margin={{

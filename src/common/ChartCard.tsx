@@ -4,7 +4,7 @@ interface ChartCardProps {
 }
 
 export const ChartCard = ({ title, children }: ChartCardProps) => (
-  <section className="chart-card flex min-w-0 flex-col gap-2.5 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+  <section className="chart-card flex min-w-0 flex-col gap-1.5 rounded-lg border border-gray-200 bg-white p-2.5 shadow-sm">
     <header>
       <h2>{title}</h2>
     </header>

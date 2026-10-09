@@ -20,7 +20,7 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
 
   return (
     <ChartCard title="Review Sentiment Distribution">
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={260}>
         <PieChart>
           <Pie
             data={sentimentCounts}
