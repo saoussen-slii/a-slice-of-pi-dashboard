@@ -55,12 +55,19 @@ const App = () => {
           <TotalRevenueCard />
         </div>
 
-        <div className="xl:col-span-2">
-          <MonthlyRevenueLineChart orders={filteredOrders} />
-        </div>
-
-        <StoreBarChart orders={filteredOrders} />
-        <ReviewPieChart reviews={filteredReviews} />
+        <section
+          aria-label="Dashboard charts"
+          tabIndex={0}
+          className="xl:col-span-2 max-h-[70vh] overflow-y-auto overscroll-contain pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
+        >
+          <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
+            <div className="xl:col-span-2">
+              <MonthlyRevenueLineChart orders={filteredOrders} />
+            </div>
+            <StoreBarChart orders={filteredOrders} />
+            <ReviewPieChart reviews={filteredReviews} />
+          </div>
+        </section>
       </main>
 
       <footer className="mt-3 border-t border-gray-200 bg-white px-3 py-2 text-center text-xs text-gray-500 sm:mt-4 sm:py-3">
