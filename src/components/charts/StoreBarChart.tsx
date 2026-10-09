@@ -13,11 +13,7 @@ import {
 } from "recharts";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
-import type {
-  Order,
-  PizzaSize,
-  PizzaType,
-} from "../../types.ts";
+import type { Order, PizzaSize, PizzaType } from "../../types.ts";
 import { PizzaFilters } from "../filters";
 
 interface StoreBarChartProps {

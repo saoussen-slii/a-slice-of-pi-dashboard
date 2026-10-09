@@ -61,8 +61,8 @@ const App = () => {
           tabIndex={0}
           className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
         >
-          <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
-            <div className="xl:col-span-2">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            <div className="md:col-span-2">
               <MonthlyRevenueLineChart orders={filteredOrders} />
             </div>
             <StoreBarChart orders={filteredOrders} />
