@@ -44,7 +44,7 @@ const PizzaFilters = ({
           id="pizza-type"
           value={pizzaType}
           onChange={handlePizzaTypeChange}
-          className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+          className="w-full rounded-md border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
           <option value="">All Types</option>
           {pizzaTypes.map((type) => (
@@ -65,7 +65,7 @@ const PizzaFilters = ({
           id="pizza-size"
           value={pizzaSize}
           onChange={handlePizzaSizeChange}
-          className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+          className="w-full rounded-md border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
           <option value="">All Sizes</option>
           {pizzaSizes.map((size) => (

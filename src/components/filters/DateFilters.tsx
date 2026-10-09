@@ -26,7 +26,7 @@ const DateFilters = ({
             value={startDate}
             max={endDate || undefined}
             onChange={onStartDateChange}
-            className="w-full rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm font-normal text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm font-normal text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 [color-scheme:light]"
           />
         </label>
         <label className="flex min-w-0 flex-1 flex-col gap-1 text-xs font-medium text-gray-600">
@@ -36,7 +36,7 @@ const DateFilters = ({
             value={endDate}
             min={startDate || undefined}
             onChange={onEndDateChange}
-            className="w-full rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm font-normal text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm font-normal text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 [color-scheme:light]"
           />
         </label>
       </div>

@@ -36,15 +36,15 @@ const App = () => {
   };
 
   return (
-    <div className="w-full min-w-0 min-h-screen bg-gray-50">
-      <header className="border-b border-gray-200 bg-white px-3 py-2 sm:px-4 sm:py-3 text-center">
+    <div className="flex h-dvh w-full min-w-0 flex-col overflow-hidden bg-gray-50">
+      <header className="border-b border-gray-200 bg-white px-3 py-2 text-center sm:px-4 sm:py-3">
         <h1 className="m-0 font-bold tracking-tight text-gray-900">
           Slice of Pi Dashboard
         </h1>
       </header>
 
-      <main className="mx-auto grid w-full min-w-0 max-w-6xl grid-cols-1 gap-3 p-2 sm:p-3 xl:grid-cols-2">
-        <div className="xl:col-span-2">
+      <main className="mx-auto flex min-h-0 w-full min-w-0 max-w-6xl flex-1 flex-col gap-3 px-2 pb-2 pt-5 sm:px-3 sm:pb-3 sm:pt-6">
+        <div className="shrink-0">
           <DateFilters
             startDate={startDate}
             endDate={endDate}
@@ -52,14 +52,14 @@ const App = () => {
             onEndDateChange={handleEndDateChange}
           />
         </div>
-        <div className="xl:col-span-2">
+        <div className="shrink-0">
           <TotalRevenueCard />
         </div>
 
         <section
           aria-label="Dashboard charts"
           tabIndex={0}
-          className="xl:col-span-2 max-h-[70vh] overflow-y-auto overscroll-contain pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
+          className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
         >
           <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
             <div className="xl:col-span-2">
@@ -72,7 +72,7 @@ const App = () => {
         </section>
       </main>
 
-      <footer className="mt-3 border-t border-gray-200 bg-white px-3 py-2 text-center text-xs text-gray-500 sm:mt-4 sm:py-3">
+      <footer className="shrink-0 border-t border-gray-200 bg-white px-3 py-2 text-center text-xs text-gray-500">
         <p>© 2026 A Slice of Pi</p>
       </footer>
     </div>
