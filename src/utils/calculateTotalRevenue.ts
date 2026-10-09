@@ -7,20 +7,21 @@ const getOrderItemsForYear = (orders: Order[], targetYear: number) =>
       order.items.map((item) => ({ ...item, date: order.date })),
     );
 
-const getItemRevenue = (
-  item: OrderItem,
-  prices: PriceGrid,
-) => prices[item.type]?.[item.size] || 0;
+const getItemRevenue = (item: OrderItem, prices: PriceGrid) =>
+  prices[item.type]?.[item.size] || 0;
 
 export const calculateTotalRevenue = (
   orders: Order[],
   prices: PriceGrid,
   targetYear: number = 2023,
-): number => {
-  return getOrderItemsForYear(orders, targetYear).reduce(
-    (total, item) => total + getItemRevenue(item, prices),
-    0,
-  );
+): string => {
+  return getOrderItemsForYear(orders, targetYear)
+    .reduce((total, item) => total + getItemRevenue(item, prices), 0)
+    .toLocaleString("en-CA", {
+      style: "currency",
+      currency: "CAD",
+      maximumFractionDigits: 0,
+    });
 };
 
 export const calculateTotalRevenueByMonth = (
