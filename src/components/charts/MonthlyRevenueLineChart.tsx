@@ -8,17 +8,18 @@ import {
   Tooltip,
 } from "recharts";
 
-import { prices, orders } from "../../data";
+import { prices } from "../../data";
 import type { Order } from "../../types.ts";
 import { CHART_COLORS } from "../../constants";
 import { calculateTotalRevenueByMonth } from "../../utils";
 import { ChartCard } from "../../common";
 
-const MonthlyRevenueLineChart = () => {
-  const monthlyRevenueData = calculateTotalRevenueByMonth(
-    orders as Order[],
-    prices,
-  );
+interface MonthlyRevenueLineChartProps {
+  orders: Order[];
+}
+
+const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
+  const monthlyRevenueData = calculateTotalRevenueByMonth(orders, prices);
   return (
     <ChartCard title="Monthly Revenue">
       <ResponsiveContainer width="100%" height={400}>

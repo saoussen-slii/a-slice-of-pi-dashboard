@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { ChangeEvent } from "react";
 import {
   ReviewPieChart,
@@ -7,14 +7,32 @@ import {
 } from "./components/charts";
 import { DateFilters } from "./components/filters";
 import TotalRevenueCard from "./components/kpi";
-import { orders } from "./data";
-import type { Order } from "./types.ts";
+import { orders, reviews } from "./data";
+import type { Order, Review } from "./types.ts";
 
 const allOrders = orders as Order[];
 
 const App = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const filteredOrders = useMemo(
+    () =>
+      allOrders.filter(
+        (order) =>
+          (!startDate || order.date >= startDate) &&
+          (!endDate || order.date <= endDate),
+      ),
+    [startDate, endDate],
+  );
+  const filteredReviews = useMemo(
+    () =>
+      (reviews as Review[]).filter(
+        (review) =>
+          (!startDate || review.date >= startDate) &&
+          (!endDate || review.date <= endDate),
+      ),
+    [startDate, endDate],
+  );
 
   const handleStartDateChange = (event: ChangeEvent<HTMLInputElement>) => {
     setStartDate(event.currentTarget.value);
@@ -46,11 +64,11 @@ const App = () => {
         </div>
 
         <div className="xl:col-span-2">
-          <MonthlyRevenueLineChart />
+          <MonthlyRevenueLineChart orders={filteredOrders} />
         </div>
 
-        <StoreBarChart orders={allOrders} />
-        <ReviewPieChart />
+        <StoreBarChart orders={filteredOrders} />
+        <ReviewPieChart reviews={filteredReviews} />
       </main>
 
       <footer className="mt-8 border-t border-gray-200 bg-white px-4 py-5 text-center text-sm text-gray-500 sm:mt-10 sm:py-6">
