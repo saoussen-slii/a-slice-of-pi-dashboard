@@ -31,10 +31,8 @@ const PizzaFilters = ({
   };
 
   return (
-    <section
-      aria-label="Filtres des commandes"
-      className="mb-4 w-4/5 flex flex-col gap-3 sm:flex-row mx-auto"
-    >
+    <fieldset className="mx-auto mb-4 flex w-4/5 min-w-0 flex-col gap-3 border-0 p-0 sm:flex-row">
+      <legend className="sr-only">Filter orders by pizza</legend>
       <div className="flex min-w-0 flex-1 flex-col gap-1 text-left">
         <label
           htmlFor="pizza-type"
@@ -77,7 +75,7 @@ const PizzaFilters = ({
           ))}
         </select>
       </div>
-    </section>
+    </fieldset>
   );
 };
 
