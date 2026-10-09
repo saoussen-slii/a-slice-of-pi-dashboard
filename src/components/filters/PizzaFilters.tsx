@@ -33,7 +33,7 @@ const PizzaFilters = ({
   return (
     <section
       aria-label="Filtres des commandes"
-      className="mb-4 flex flex-col gap-3 sm:flex-row"
+      className="mb-4 w-4/5 flex flex-col gap-3 sm:flex-row mx-auto"
     >
       <div className="flex min-w-0 flex-1 flex-col gap-1 text-left">
         <label
