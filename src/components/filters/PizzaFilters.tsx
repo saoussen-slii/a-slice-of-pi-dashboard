@@ -1,3 +1,4 @@
+import type { ChangeEvent } from "react";
 import type { PizzaSize, PizzaType } from "../../types.ts";
 
 interface PizzaFiltersProps {
@@ -22,6 +23,13 @@ const PizzaFilters = ({
   onPizzaTypeChange,
   onPizzaSizeChange,
 }: PizzaFiltersProps) => {
+  const handlePizzaTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    onPizzaTypeChange(event.target.value as PizzaType | "");
+  };
+  const handlePizzaSizeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    onPizzaSizeChange(event.target.value as PizzaSize | "");
+  };
+
   return (
     <section
       aria-label="Filtres des commandes"
@@ -37,9 +45,7 @@ const PizzaFilters = ({
         <select
           id="pizza-type"
           value={pizzaType}
-          onChange={(event) =>
-            onPizzaTypeChange(event.target.value as PizzaType | "")
-          }
+          onChange={handlePizzaTypeChange}
           className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
           <option value="">Tous les types</option>
@@ -60,9 +66,7 @@ const PizzaFilters = ({
         <select
           id="pizza-size"
           value={pizzaSize}
-          onChange={(event) =>
-            onPizzaSizeChange(event.target.value as PizzaSize | "")
-          }
+          onChange={handlePizzaSizeChange}
           className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
           <option value="">Toutes les tailles</option>
