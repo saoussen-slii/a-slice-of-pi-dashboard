@@ -1,83 +1,81 @@
-# A Slice of Pi Dashboard
+<div align="center">
 
-A responsive pizza-sales dashboard built with React, TypeScript, Vite, Tailwind
-CSS, and Recharts. It presents order, revenue, store, and customer-review data
-for 2026.
+# 🍕 A Slice of Pi
 
-## Features
+### A clear view of pizza sales, revenue, stores, and customer sentiment.
 
-- Filter dashboard charts by an inclusive start and end date.
-- View total revenue for 2026. This KPI is intentionally independent of the
-  date and pizza filters.
-- Explore monthly revenue in an area chart.
-- View order counts by store, with pizza type and size filters.
-- Compare pizza sales by store and pizza size in a grouped bar chart.
-- Explore review sentiment distribution in a pie chart.
-- Scroll through the chart area independently from the date filter and revenue
-  KPI.
-- Responsive layouts, keyboard-accessible filter controls, and reduced-motion
-  support for the charts' entrance fade.
+Built with React, TypeScript, Vite, Tailwind CSS, and Recharts.
 
-## Requirements
+![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![Recharts](https://img.shields.io/badge/Charts-Recharts-8884d8)
 
-- Node.js compatible with the installed Vite version
-- npm
+</div>
 
-## Getting started
+---
 
-Install dependencies and start the development server:
+## ✨ Dashboard highlights
 
-```sh
+| Visualization | What it shows |
+| --- | --- |
+| **Monthly Revenue** | Monthly revenue trend, with a lightly shaded area under the line. |
+| **Store Performance** | Order counts per store, filterable by pizza type and size. |
+| **Pizza Sales by Store and Size** | A grouped bar chart comparing small, medium, and large pizzas at each store. |
+| **Review Sentiment** | The distribution of customer review sentiment. |
+| **Total Revenue 2023** | Revenue across all 2023 orders. |
+
+Use the date range control to filter the charts. The start and end dates are
+inclusive. Pizza type and size filters apply only to **Store Performance**.
+The total revenue card always reflects all 2023 orders.
+
+> Pizza items do not have individual dates, so date filtering uses the date of
+> the order containing each item. Reviews are filtered by their own dates.
+
+## 🚀 Get started
+
+```bash
 npm install
 npm run dev
 ```
 
-Vite prints the local development URL in the terminal.
+Open the local URL printed by Vite in your terminal.
 
-## Available scripts
+## 🧰 Commands
 
-| Command           | Description                                          |
-| ----------------- | ---------------------------------------------------- |
-| `npm run dev`     | Start the Vite development server.                   |
-| `npm run build`   | Type-check and create a production build in `dist/`. |
-| `npm run preview` | Serve the production build locally.                  |
-| `npm run lint`    | Run ESLint.                                          |
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local development server. |
+| `npm run build` | Type-check and create the production build in `dist/`. |
+| `npm run preview` | Preview the production build locally. |
+| `npm run lint` | Run ESLint. |
 
-## Data and filtering
-
-Dashboard data is stored as JSON in `src/data/`:
-
-- `order_data.json` contains orders, including their dates and pizza items.
-- `review_data.json` contains dated customer reviews and sentiment.
-- `pricing_data.json` maps pizza types and sizes to prices.
-
-The date filter in `App.tsx` applies to orders and reviews passed to the charts.
-Since pizza items do not have individual dates, each item's date is the date of
-its containing order. The start and end dates are inclusive. The total revenue
-card continues to show revenue for all 2026 orders, regardless of the selected
-date range.
-
-The pizza type and size filters apply only to the Store Performance chart.
-
-## Project structure
+## 🗂️ Project layout
 
 ```text
 src/
-  common/       Shared UI components such as ChartCard
-  components/
-    charts/     Recharts visualizations
-    filters/    Date and pizza filter controls
-    kpi/        Dashboard KPI cards
-  constants/    Shared chart colors
-  data/         JSON data and exports
-  utils/        Date filtering, revenue calculations, and frequency counts
-  App.tsx       Dashboard state, layout, and chart data flow
-  index.css     Global styles, typography, and motion preferences
+├── common/                 Shared interface components
+├── components/
+│   ├── charts/             Revenue, store, and sentiment charts
+│   ├── filters/            Date and pizza filters
+│   └── kpi/                Revenue summary card
+├── constants/              Shared chart colors
+├── data/                   Order, review, and pricing JSON
+├── utils/                  Filtering and calculation helpers
+├── App.tsx                 Dashboard state and layout
+└── index.css               Global styles and motion preferences
 ```
 
-## Technology
+Dashboard data lives in `src/data/`. Update the JSON there to change the sample
+orders, reviews, or pizza prices.
 
-- React 19 and TypeScript
-- Vite
-- Tailwind CSS 4
-- Recharts
+## ♿ Accessibility and responsive design
+
+- Filter controls have labels and remain native keyboard-operable inputs.
+- The chart area can be scrolled independently from the filters and KPI.
+- The chart entrance fade respects the system's reduced-motion preference.
+- Layouts adapt to smaller screens.
+
+## 🛠️ Built with
+
+React 19 · TypeScript · Vite · Tailwind CSS 4 · Recharts
