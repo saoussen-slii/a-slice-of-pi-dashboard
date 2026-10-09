@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Fond du tableau de bord / Fenêtre -->
+  <rect x="2" y="4" width="28" height="24" rx="4" fill="#0f172a"/>
+  
+  <!-- Barre d'en-tête -->
+  <path d="M2 8C2 5.79086 3.79086 4 6 4H26C28.2091 4 30 5.79086 30 8V10H2V8Z" fill="#1e293b"/>
+  <circle cx="6" cy="7" r="1" fill="#ef4444"/>
+  <circle cx="9" cy="7" r="1" fill="#f59e0b"/>
+  <circle cx="12" cy="7" r="1" fill="#10b981"/>
+  
+  <!-- Graphique en courbe (Analytics / Tendance) -->
+  <path d="M6 21L11 16L16 19L26 11" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Points de données sur le graphique -->
+  <circle cx="26" cy="11" r="1.5" fill="#38bdf8"/>
+  
+  <!-- Barres de statistiques en bas -->
+  <rect x="6" y="23" width="3" height="3" rx="0.5" fill="#818cf8"/>
+  <rect x="11" y="23" width="6" height="3" rx="0.5" fill="#6366f1"/>
+  <rect x="19" y="23" width="7" height="3" rx="0.5" fill="#4f46e5"/>
+</svg>
