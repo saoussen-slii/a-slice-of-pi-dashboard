@@ -6,18 +6,21 @@ import {
   Cell,
   Tooltip,
 } from "recharts";
-import { reviews } from "../../data";
 import type { Review } from "../../types.ts";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
 import { ChartCard } from "../../common";
 
-const sentimentCounts = getFrequencyCount(reviews as Review[], "sentiment");
+interface ReviewPieChartProps {
+  reviews: Review[];
+}
 
-const ReviewPieChart = () => {
+const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
+  const sentimentCounts = getFrequencyCount(reviews, "sentiment");
+
   return (
     <ChartCard title="Review Sentiment Distribution">
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={260}>
         <PieChart>
           <Pie
             data={sentimentCounts}

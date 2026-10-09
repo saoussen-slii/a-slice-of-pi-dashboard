@@ -47,7 +47,7 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
         onPizzaTypeChange={setPizzaType}
         onPizzaSizeChange={setPizzaSize}
       />
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={260}>
         <BarChart
           data={storeCounts}
           margin={{
