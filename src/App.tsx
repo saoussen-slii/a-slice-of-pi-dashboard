@@ -4,6 +4,7 @@ import {
   ReviewPieChart,
   StoreBarChart,
   MonthlyRevenueLineChart,
+  StoreSizeGroupedBarChart,
 } from "./components/charts";
 import { DateFilters } from "./components/filters";
 import TotalRevenueCard from "./components/kpi";
@@ -66,6 +67,7 @@ const App = () => {
             </div>
             <StoreBarChart orders={filteredOrders} />
             <ReviewPieChart reviews={filteredReviews} />
+            <StoreSizeGroupedBarChart orders={filteredOrders} />
           </div>
         </section>
       </main>
