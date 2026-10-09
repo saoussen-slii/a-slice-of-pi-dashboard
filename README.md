@@ -1,76 +1,83 @@
-# React + TypeScript + Vite
+# A Slice of Pi Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive pizza-sales dashboard built with React, TypeScript, Vite, Tailwind
+CSS, and Recharts. It presents order, revenue, store, and customer-review data
+for 2023.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Filter dashboard charts by an inclusive start and end date.
+- View total revenue for 2023. This KPI is intentionally independent of the
+  date and pizza filters.
+- Explore monthly revenue in an area chart.
+- View order counts by store, with pizza type and size filters.
+- Compare pizza sales by store and pizza size in a grouped bar chart.
+- Explore review sentiment distribution in a pie chart.
+- Scroll through the chart area independently from the date filter and revenue
+  KPI.
+- Responsive layouts, keyboard-accessible filter controls, and reduced-motion
+  support for the charts' entrance fade.
 
-## React Compiler
+## Requirements
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js compatible with the installed Vite version
+- npm
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Install dependencies and start the development server:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Vite prints the local development URL in the terminal.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Available scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server. |
+| `npm run build` | Type-check and create a production build in `dist/`. |
+| `npm run preview` | Serve the production build locally. |
+| `npm run lint` | Run ESLint. |
 
+## Data and filtering
+
+Dashboard data is stored as JSON in `src/data/`:
+
+- `order_data.json` contains orders, including their dates and pizza items.
+- `review_data.json` contains dated customer reviews and sentiment.
+- `pricing_data.json` maps pizza types and sizes to prices.
+
+The date filter in `App.tsx` applies to orders and reviews passed to the charts.
+Since pizza items do not have individual dates, each item's date is the date of
+its containing order. The start and end dates are inclusive. The total revenue
+card continues to show revenue for all 2023 orders, regardless of the selected
+date range.
+
+The pizza type and size filters apply only to the Store Performance chart.
+
+## Project structure
+
+```text
+src/
+  common/       Shared UI components such as ChartCard
+  components/
+    charts/     Recharts visualizations
+    filters/    Date and pizza filter controls
+    kpi/        Dashboard KPI cards
+  constants/    Shared chart colors
+  data/         JSON data and exports
+  utils/        Date filtering, revenue calculations, and frequency counts
+  App.tsx       Dashboard state, layout, and chart data flow
+  index.css     Global styles, typography, and motion preferences
 ```
-# a-slice-of-pi-dashboard
+
+## Technology
+
+- React 19 and TypeScript
+- Vite
+- Tailwind CSS 4
+- Recharts
