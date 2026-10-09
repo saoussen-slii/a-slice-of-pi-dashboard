@@ -9,7 +9,7 @@ import {
 import type { Review } from "../../types.ts";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
-import { ChartCard } from "../../common";
+import { ChartCard, ChartEmptyState } from "../../common";
 
 interface ReviewPieChartProps {
   reviews: Review[];
@@ -20,29 +20,33 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
 
   return (
     <ChartCard title="Review Sentiment Distribution">
-      <ResponsiveContainer width="100%" height={260}>
-        <PieChart>
-          <Pie
-            data={sentimentCounts}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            outerRadius={80}
-            fill="#8884d8"
-            label
-          >
-            {sentimentCounts.map((__, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={CHART_COLORS[index % CHART_COLORS.length]}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
-      </ResponsiveContainer>
+      {sentimentCounts.length === 0 ? (
+        <ChartEmptyState />
+      ) : (
+        <ResponsiveContainer width="100%" height={260}>
+          <PieChart>
+            <Pie
+              data={sentimentCounts}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={80}
+              fill="#8884d8"
+              label
+            >
+              {sentimentCounts.map((__, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={CHART_COLORS[index % CHART_COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
+      )}
     </ChartCard>
   );
 };
