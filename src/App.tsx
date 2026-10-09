@@ -1,8 +1,11 @@
+import { useState } from "react";
+import type { ChangeEvent } from "react";
 import {
   ReviewPieChart,
   StoreBarChart,
   MonthlyRevenueLineChart,
 } from "./components/charts";
+import { DateFilters } from "./components/filters";
 import TotalRevenueCard from "./components/kpi";
 import { orders } from "./data";
 import type { Order } from "./types.ts";
@@ -10,6 +13,17 @@ import type { Order } from "./types.ts";
 const allOrders = orders as Order[];
 
 const App = () => {
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  const handleStartDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setStartDate(event.currentTarget.value);
+  };
+
+  const handleEndDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEndDate(event.currentTarget.value);
+  };
+
   return (
     <div className="w-full min-w-0 min-h-screen bg-gray-50">
       <header className="border-b border-gray-200 bg-white px-4 py-6 sm:px-6 sm:py-8 text-center">
@@ -19,6 +33,14 @@ const App = () => {
       </header>
 
       <main className="mx-auto grid w-full min-w-0 max-w-6xl grid-cols-1 gap-6 p-4 xl:grid-cols-2">
+        <div className="xl:col-span-2">
+          <DateFilters
+            startDate={startDate}
+            endDate={endDate}
+            onStartDateChange={handleStartDateChange}
+            onEndDateChange={handleEndDateChange}
+          />
+        </div>
         <div className="xl:col-span-2">
           <TotalRevenueCard />
         </div>
