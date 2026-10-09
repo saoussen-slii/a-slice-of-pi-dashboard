@@ -1,10 +1,10 @@
 import {
-  LineChart,
+  Area,
+  AreaChart,
   ResponsiveContainer,
   CartesianGrid,
   XAxis,
   YAxis,
-  Line,
   Tooltip,
 } from "recharts";
 
@@ -23,7 +23,7 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
   return (
     <ChartCard title="Monthly Revenue">
       <ResponsiveContainer width="100%" height={260}>
-        <LineChart
+        <AreaChart
           data={monthlyRevenueData}
           margin={{
             top: 5,
@@ -40,13 +40,15 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
           />
           <YAxis />
           <Tooltip />
-          <Line
+          <Area
             type="monotone"
             dataKey="revenue"
             stroke={CHART_COLORS[0]}
+            fill="#eef2ff"
+            fillOpacity={0.45}
             activeDot={{ r: 8 }}
           />
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
     </ChartCard>
   );

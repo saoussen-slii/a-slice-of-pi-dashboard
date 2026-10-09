@@ -37,10 +37,13 @@ const App = () => {
 
   return (
     <div className="flex h-dvh w-full min-w-0 flex-col overflow-hidden bg-gray-50">
-      <header className="border-b border-gray-200 bg-white px-3 py-2 text-center sm:px-4 sm:py-3">
-        <h1 className="m-0 font-bold tracking-tight text-gray-900">
-          Slice of Pi Dashboard
-        </h1>
+      <header className="shrink-0 border-b border-indigo-100 bg-indigo-50 px-4 py-3 text-indigo-950 shadow-sm sm:px-6">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-2">
+          <h1 className="m-0 justify-self-start text-left text-lg font-semibold tracking-tight text-indigo-950 sm:text-xl">
+            🍕 Slice of Pi Dashboard
+          </h1>
+          <div aria-hidden="true" />
+        </div>
       </header>
 
       <main className="mx-auto flex min-h-0 w-full min-w-0 max-w-6xl flex-1 flex-col gap-3 px-2 pb-2 pt-5 sm:px-3 sm:pb-3 sm:pt-6">
