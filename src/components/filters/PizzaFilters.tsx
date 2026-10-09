@@ -40,7 +40,7 @@ const PizzaFilters = ({
           htmlFor="pizza-type"
           className="text-sm font-medium text-gray-700"
         >
-          Type de pizza
+          Pizza Type
         </label>
         <select
           id="pizza-type"
@@ -48,7 +48,7 @@ const PizzaFilters = ({
           onChange={handlePizzaTypeChange}
           className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
-          <option value="">Tous les types</option>
+          <option value="">All Types</option>
           {pizzaTypes.map((type) => (
             <option key={type} value={type}>
               {type}
@@ -61,7 +61,7 @@ const PizzaFilters = ({
           htmlFor="pizza-size"
           className="text-sm font-medium text-gray-700"
         >
-          Taille de pizza
+          Pizza Size
         </label>
         <select
           id="pizza-size"
@@ -69,7 +69,7 @@ const PizzaFilters = ({
           onChange={handlePizzaSizeChange}
           className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
-          <option value="">Toutes les tailles</option>
+          <option value="">All Sizes</option>
           {pizzaSizes.map((size) => (
             <option key={size} value={size}>
               {size}
