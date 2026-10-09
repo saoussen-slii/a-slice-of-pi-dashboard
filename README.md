@@ -23,11 +23,11 @@ Built with React, TypeScript, Vite, Tailwind CSS, and Recharts.
 | **Store Performance** | Order counts per store, filterable by pizza type and size. |
 | **Pizza Sales by Store and Size** | A grouped bar chart comparing small, medium, and large pizzas at each store. |
 | **Review Sentiment** | The distribution of customer review sentiment. |
-| **Total Revenue 2023** | Revenue across all 2023 orders. |
+| **Total Revenue 2026** | Revenue across all 2026 orders. |
 
 Use the date range control to filter the charts. The start and end dates are
 inclusive. Pizza type and size filters apply only to **Store Performance**.
-The total revenue card always reflects all 2023 orders.
+The total revenue card always reflects all 2026 orders.
 
 > Pizza items do not have individual dates, so date filtering uses the date of
 > the order containing each item. Reviews are filtered by their own dates.
