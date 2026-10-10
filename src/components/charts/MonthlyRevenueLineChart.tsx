@@ -20,11 +20,13 @@ interface MonthlyRevenueLineChartProps {
 
 const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
   const monthlyRevenueData = calculateTotalRevenueByMonth(orders, prices);
-  const formatCurrency = (value: number | string | readonly (number | string)[]) =>
+  const formatCurrency = (
+    value: number | string | readonly (number | string)[],
+  ) =>
     `$${Number(value).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 
   return (
-    <ChartCard title="Monthly Revenue">
+    <ChartCard title="Monthly Revenue 2023">
       {monthlyRevenueData.length === 0 ? (
         <ChartEmptyState />
       ) : (
@@ -39,9 +41,23 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
             }}
           >
             <defs>
-              <linearGradient id="monthly-revenue-fill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={CHART_COLORS[0]} stopOpacity={0.3} />
-                <stop offset="90%" stopColor={CHART_COLORS[0]} stopOpacity={0.01} />
+              <linearGradient
+                id="monthly-revenue-fill"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop
+                  offset="0%"
+                  stopColor={CHART_COLORS[0]}
+                  stopOpacity={0.3}
+                />
+                <stop
+                  offset="90%"
+                  stopColor={CHART_COLORS[0]}
+                  stopOpacity={0.01}
+                />
               </linearGradient>
             </defs>
             <CartesianGrid
