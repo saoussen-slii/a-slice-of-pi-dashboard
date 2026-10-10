@@ -47,7 +47,7 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
 
   return (
     <ChartCard title={t("storePerformance")}>
-      {storeCounts.length === 0 ? (
+      {orders.length === 0 ? (
         <ChartEmptyState height={190} />
       ) : (
         <div className="mb-1">

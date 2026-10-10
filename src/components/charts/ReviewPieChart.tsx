@@ -34,14 +34,14 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
         <ChartEmptyState height={190} />
       ) : (
         <div className="pt-2">
-          <ResponsiveContainer width="100%" height={190}>
+          <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie
                 data={sentimentCounts}
                 dataKey="value"
                 nameKey="name"
                 cx="50%"
-                cy="52%"
+                cy="48%"
                 innerRadius={54}
                 outerRadius={82}
                 paddingAngle={4}
@@ -61,10 +61,15 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
                 )}
               />
               <Legend
-                position="bottom"
+                verticalAlign="bottom"
+                align="center"
                 iconType="circle"
                 iconSize={8}
-                wrapperStyle={{ fontSize: 11, color: "#64748B" }}
+                wrapperStyle={{
+                  fontSize: 11,
+                  color: "#64748B",
+                  paddingTop: 6,
+                }}
               />
             </PieChart>
           </ResponsiveContainer>
