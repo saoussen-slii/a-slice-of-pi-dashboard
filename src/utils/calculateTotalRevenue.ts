@@ -2,7 +2,7 @@ import type { Order, OrderItem, PriceGrid } from "../types.ts";
 
 const getOrderItemsForYear = (orders: Order[], targetYear: number) =>
   orders
-    .filter((order) => new Date(order.date).getFullYear() === targetYear)
+    .filter((order) => new Date(order.date).getUTCFullYear() === targetYear)
     .flatMap((order) =>
       order.items.map((item) => ({ ...item, date: order.date })),
     );
@@ -32,7 +32,7 @@ export const calculateTotalRevenueByMonth = (
 ): { month: number; revenue: number }[] => {
   const monthlyRevenue: Record<number, number> = {};
   getOrderItemsForYear(orders, targetYear).forEach((item) => {
-    const month = new Date(item.date).getMonth();
+    const month = new Date(item.date).getUTCMonth();
     monthlyRevenue[month] =
       (monthlyRevenue[month] || 0) + getItemRevenue(item, prices);
   });
