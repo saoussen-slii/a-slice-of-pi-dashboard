@@ -14,29 +14,27 @@ const DateFilters = ({
   onEndDateChange,
 }: DateFiltersProps) => {
   return (
-    <fieldset className="w-full min-w-0 border-0 p-0 text-left">
-      <legend className="sr-only px-1 text-sm font-semibold text-gray-800">
-        Filter orders by date
-      </legend>
-      <div className="mt-2 flex flex-col gap-3 sm:flex-row">
-        <label className="flex min-w-0 flex-1 flex-col gap-1 text-xs font-medium text-gray-600">
+    <fieldset className="flex h-full w-full min-w-0 flex-col justify-center rounded-xl border border-indigo-100 bg-gradient-to-br from-white via-white to-indigo-50/70 p-6 text-left shadow-sm sm:p-8">
+      <legend className="sr-only">Filter orders by date</legend>
+      <div className="flex flex-col gap-4 sm:flex-row">
+        <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
           Start date
           <input
             type="date"
             value={startDate}
             max={endDate || undefined}
             onChange={onStartDateChange}
-            className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm font-normal text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 [color-scheme:light]"
+            className="w-full rounded-lg border border-indigo-100 bg-white/90 px-3 py-2.5 text-sm font-medium text-gray-800 shadow-sm shadow-indigo-950/[0.03] transition-all hover:border-indigo-200 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 [color-scheme:light]"
           />
         </label>
-        <label className="flex min-w-0 flex-1 flex-col gap-1 text-xs font-medium text-gray-600">
+        <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
           End date
           <input
             type="date"
             value={endDate}
             min={startDate || undefined}
             onChange={onEndDateChange}
-            className="w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm font-normal text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 [color-scheme:light]"
+            className="w-full rounded-lg border border-indigo-100 bg-white/90 px-3 py-2.5 text-sm font-medium text-gray-800 shadow-sm shadow-indigo-950/[0.03] transition-all hover:border-indigo-200 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 [color-scheme:light]"
           />
         </label>
       </div>

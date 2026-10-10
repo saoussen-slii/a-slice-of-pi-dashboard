@@ -47,21 +47,21 @@ const App = () => {
       </header>
 
       <main className="mx-auto flex min-h-0 w-full min-w-0 max-w-7xl flex-1 flex-col px-4 pb-4 pt-6 sm:px-6 sm:pb-6 lg:px-8">
-        <div className="mb-6 flex w-full shrink-0 flex-col items-stretch justify-between gap-4 rounded-xl bg-white p-4 shadow-sm md:flex-row md:items-center">
-          <DateFilters
-            startDate={startDate}
-            endDate={endDate}
-            onStartDateChange={handleStartDateChange}
-            onEndDateChange={handleEndDateChange}
-          />
-        </div>
-        <div className="mb-6 w-full shrink-0">
+        <div className="mb-6 grid w-full shrink-0 grid-cols-1 items-stretch gap-4 md:grid-cols-2 md:gap-6">
           <TotalRevenueCard />
+          <div className="w-full">
+            <DateFilters
+              startDate={startDate}
+              endDate={endDate}
+              onStartDateChange={handleStartDateChange}
+              onEndDateChange={handleEndDateChange}
+            />
+          </div>
         </div>
         <section
           aria-label="Dashboard charts"
           tabIndex={0}
-          className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
+          className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-1 pb-2 pt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
         >
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="md:col-span-2">
