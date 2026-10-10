@@ -7,26 +7,34 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 
 import { prices } from "../../data";
 import type { Order } from "../../types.ts";
 import { CHART_COLORS } from "../../constants";
 import { calculateTotalRevenueByMonth } from "../../utils";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
+import { localeFor } from "../../i18n";
 
 interface MonthlyRevenueLineChartProps {
   orders: Order[];
 }
 
 const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
+  const { t, i18n } = useTranslation();
   const monthlyRevenueData = calculateTotalRevenueByMonth(orders, prices);
+  const locale = localeFor(i18n.language);
   const formatCurrency = (
     value: number | string | readonly (number | string)[],
   ) =>
-    `$${Number(value).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+    new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: "CAD",
+      maximumFractionDigits: 0,
+    }).format(Number(value));
 
   return (
-    <ChartCard title="Monthly Revenue 2023">
+    <ChartCard title={`${t("monthlyRevenue")} 2023`}>
       {monthlyRevenueData.length === 0 ? (
         <ChartEmptyState />
       ) : (
@@ -72,7 +80,11 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
               tickLine={false}
               tickMargin={10}
               tick={{ fill: "#94A3B8", fontSize: 11, fontWeight: 500 }}
-              tickFormatter={(month: string) => month.slice(0, 3)}
+              tickFormatter={(month: number) =>
+                new Date(2023, month, 1)
+                  .toLocaleString(locale, { month: "short" })
+                  .replace(/\.$/, "")
+              }
             />
             <YAxis
               axisLine={false}
@@ -81,12 +93,18 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
               width={54}
               tick={{ fill: "#94A3B8", fontSize: 10, fontWeight: 500 }}
               tickFormatter={(value: number) =>
-                `$${value >= 1000 ? `${Math.round(value / 1000)}k` : value}`
+                locale.startsWith("fr")
+                  ? `${value >= 1000 ? `${Math.round(value / 1000)} k` : value}\u00a0$`
+                  : `$${value >= 1000 ? `${Math.round(value / 1000)}k` : value}`
               }
             />
             <Tooltip
               content={(props) => (
-                <ChartTooltip {...props} valueFormatter={formatCurrency} />
+                <ChartTooltip
+                  {...props}
+                  valueFormatter={formatCurrency}
+                  monthLabel
+                />
               )}
               cursor={{ stroke: "#A5B4FC", strokeDasharray: "4 4" }}
             />

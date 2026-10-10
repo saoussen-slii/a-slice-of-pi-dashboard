@@ -1,23 +1,35 @@
 import { PieChart, Legend, ResponsiveContainer, Pie, Tooltip } from "recharts";
-import type { Review } from "../../types.ts";
+import { useTranslation } from "react-i18next";
+import type { Review, Sentiment } from "../../types.ts";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
+import { localeFor } from "../../i18n";
+import type { MessageKey } from "../../i18n";
 
 interface ReviewPieChartProps {
   reviews: Review[];
 }
 
+const sentimentMessages: Record<Sentiment, MessageKey> = {
+  angry: "angry",
+  delighted: "delighted",
+  happy: "happy",
+  sad: "sad",
+};
+
 const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
+  const { t, i18n } = useTranslation();
   const sentimentCounts = getFrequencyCount(reviews, "sentiment").map(
     (sentiment, index) => ({
       ...sentiment,
+      name: t(sentimentMessages[sentiment.name as Sentiment]),
       fill: CHART_COLORS[index % CHART_COLORS.length],
     }),
   );
 
   return (
-    <ChartCard title="Review Sentiment Distribution">
+    <ChartCard title={t("reviewSentiment")}>
       {sentimentCounts.length === 0 ? (
         <ChartEmptyState height={190} />
       ) : (
@@ -42,7 +54,9 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
                 content={(props) => (
                   <ChartTooltip
                     {...props}
-                    valueFormatter={(value) => Number(value).toLocaleString()}
+                    valueFormatter={(value) =>
+                      Number(value).toLocaleString(localeFor(i18n.language))
+                    }
                   />
                 )}
               />

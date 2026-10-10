@@ -9,9 +9,11 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
 import { CHART_COLORS } from "../../constants";
 import type { Order, PizzaSize, StoreLocation } from "../../types.ts";
+import { localeFor } from "../../i18n";
 
 interface StoreSizeGroupedBarChartProps {
   orders: Order[];
@@ -19,9 +21,8 @@ interface StoreSizeGroupedBarChartProps {
 
 const pizzaSizes: PizzaSize[] = ["S", "M", "L"];
 
-const StoreSizeGroupedBarChart = ({
-  orders,
-}: StoreSizeGroupedBarChartProps) => {
+const StoreSizeGroupedBarChart = ({ orders }: StoreSizeGroupedBarChartProps) => {
+  const { t, i18n } = useTranslation();
   const salesByStore = useMemo(() => {
     const counts = new Map<StoreLocation, Record<PizzaSize, number>>();
 
@@ -37,7 +38,7 @@ const StoreSizeGroupedBarChart = ({
   }, [orders]);
 
   return (
-    <ChartCard title="Pizza Sales by Store and Size">
+    <ChartCard title={t("pizzaSalesBySize")}>
       {salesByStore.length === 0 ? (
         <ChartEmptyState />
       ) : (
@@ -91,7 +92,9 @@ const StoreSizeGroupedBarChart = ({
               content={(props) => (
                 <ChartTooltip
                   {...props}
-                  valueFormatter={(value) => Number(value).toLocaleString()}
+                  valueFormatter={(value) =>
+                    Number(value).toLocaleString(localeFor(i18n.language))
+                  }
                 />
               )}
               cursor={{ fill: "rgba(79, 70, 229, 0.05)" }}
@@ -106,7 +109,7 @@ const StoreSizeGroupedBarChart = ({
                         className="h-2.5 w-2.5 rounded-full"
                         style={{ backgroundColor: CHART_COLORS[index] }}
                       />
-                      Size {size}
+                      {t("size")} {size}
                     </li>
                   ))}
                 </ul>
@@ -116,7 +119,7 @@ const StoreSizeGroupedBarChart = ({
               <Bar
                 key={size}
                 dataKey={size}
-                name={`Size ${size}`}
+                name={`${t("size")} ${size}`}
                 fill={`url(#pizza-size-${size.toLowerCase()})`}
                 radius={[5, 5, 1, 1]}
                 maxBarSize={30}

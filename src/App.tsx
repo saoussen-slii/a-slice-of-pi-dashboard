@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { ChangeEvent } from "react";
 import {
   ReviewPieChart,
@@ -15,6 +16,9 @@ import { filterByDateRange } from "./utils";
 const allOrders = orders as Order[];
 
 const App = () => {
+  const { t, i18n } = useTranslation();
+  const language = i18n.resolvedLanguage ?? i18n.language;
+  const selectedLanguage = language.split("-")[0];
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const filteredOrders = useMemo(
@@ -36,13 +40,37 @@ const App = () => {
   };
 
   return (
-    <div className="flex h-dvh w-full min-w-0 flex-col overflow-hidden bg-gray-50">
+    <div
+      lang={selectedLanguage}
+      className="flex h-dvh w-full min-w-0 flex-col overflow-hidden bg-gray-50"
+    >
       <header className="shrink-0 border-b border-indigo-100 bg-indigo-50 px-4 py-3 text-indigo-950 shadow-sm sm:px-6">
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 sm:px-6 lg:px-8">
-          <h1 className="m-0 justify-self-start text-left text-lg font-semibold tracking-tight text-indigo-950 sm:text-xl">
-            🍕 Slice of Pi Dashboard
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+          <h1 className="m-0 min-w-0 text-left text-base font-semibold tracking-tight text-indigo-950 sm:text-xl">
+            {t("dashboardTitle")}
           </h1>
-          <div aria-hidden="true" />
+          <div
+            role="group"
+            aria-label={t("selectLanguage")}
+            className="flex shrink-0 items-center rounded-lg border border-indigo-200 bg-white/80 p-1 shadow-sm"
+          >
+            {(["en", "fr"] as const).map((option) => (
+              <button
+                key={option}
+                type="button"
+                lang={option}
+                aria-pressed={selectedLanguage === option}
+                onClick={() => void i18n.changeLanguage(option)}
+                className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors sm:px-3 sm:text-sm ${
+                  selectedLanguage === option
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "text-indigo-700 hover:bg-indigo-50"
+                }`}
+              >
+                {option.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
       </header>
 
@@ -59,7 +87,7 @@ const App = () => {
           </div>
         </div>
         <section
-          aria-label="Dashboard charts"
+          aria-label={t("dashboardCharts")}
           tabIndex={0}
           className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-1 pb-2 pt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
         >

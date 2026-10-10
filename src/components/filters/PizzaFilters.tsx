@@ -1,5 +1,7 @@
 import type { ChangeEvent } from "react";
+import { useTranslation } from "react-i18next";
 import type { PizzaSize, PizzaType } from "../../types.ts";
+import type { MessageKey } from "../../i18n";
 
 interface PizzaFiltersProps {
   pizzaType: PizzaType | "";
@@ -8,12 +10,12 @@ interface PizzaFiltersProps {
   onPizzaSizeChange: (value: PizzaSize | "") => void;
 }
 
-const pizzaTypes: PizzaType[] = [
-  "Cheese",
-  "Deluxe",
-  "Hawaiian",
-  "Meatlovers",
-  "Pepperoni",
+const pizzaTypes: { value: PizzaType; label: MessageKey }[] = [
+  { value: "Cheese", label: "cheese" },
+  { value: "Deluxe", label: "deluxe" },
+  { value: "Hawaiian", label: "hawaiian" },
+  { value: "Meatlovers", label: "meatlovers" },
+  { value: "Pepperoni", label: "pepperoni" },
 ];
 const pizzaSizes: PizzaSize[] = ["S", "M", "L"];
 
@@ -23,6 +25,7 @@ const PizzaFilters = ({
   onPizzaTypeChange,
   onPizzaSizeChange,
 }: PizzaFiltersProps) => {
+  const { t } = useTranslation();
   const handlePizzaTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onPizzaTypeChange(event.target.value as PizzaType | "");
   };
@@ -32,13 +35,15 @@ const PizzaFilters = ({
 
   return (
     <fieldset className="mb-2 flex w-full min-w-0 flex-col gap-2 border-0 p-0 sm:flex-row">
-      <legend className="sr-only">Filter orders by pizza</legend>
+      <legend className="sr-only">
+        {t("filterOrdersByPizza")}
+      </legend>
       <div className="flex min-w-0 flex-1 flex-col gap-1 text-left">
         <label
           htmlFor="pizza-type"
           className="text-xs font-medium text-gray-600"
         >
-          Pizza Type
+          {t("pizzaType")}
         </label>
         <select
           id="pizza-type"
@@ -46,10 +51,10 @@ const PizzaFilters = ({
           onChange={handlePizzaTypeChange}
           className="w-full rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-xs text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
-          <option value="">All Types</option>
-          {pizzaTypes.map((type) => (
-            <option key={type} value={type}>
-              {type}
+          <option value="">{t("allTypes")}</option>
+          {pizzaTypes.map(({ value, label }) => (
+            <option key={value} value={value}>
+              {t(label)}
             </option>
           ))}
         </select>
@@ -59,7 +64,7 @@ const PizzaFilters = ({
           htmlFor="pizza-size"
           className="text-xs font-medium text-gray-600"
         >
-          Pizza Size
+          {t("pizzaSize")}
         </label>
         <select
           id="pizza-size"
@@ -67,7 +72,7 @@ const PizzaFilters = ({
           onChange={handlePizzaSizeChange}
           className="w-full rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-xs text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
-          <option value="">All Sizes</option>
+          <option value="">{t("allSizes")}</option>
           {pizzaSizes.map((size) => (
             <option key={size} value={size}>
               {size}
