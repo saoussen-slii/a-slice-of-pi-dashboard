@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ChartCard, ChartEmptyState } from "../../common";
 import {
   BarChart,
@@ -16,12 +17,14 @@ import { getFrequencyCount } from "../../utils";
 import type { Order, PizzaSize, PizzaType } from "../../types.ts";
 import { PizzaFilters } from "../filters";
 import { ChartTooltip } from "../../common";
+import { localeFor } from "../../i18n";
 
 interface StoreBarChartProps {
   orders: Order[];
 }
 
 const StoreBarChart = ({ orders }: StoreBarChartProps) => {
+  const { t, i18n } = useTranslation();
   const [pizzaType, setPizzaType] = useState<PizzaType | "">("");
   const [pizzaSize, setPizzaSize] = useState<PizzaSize | "">("");
   const filteredOrders = useMemo(
@@ -41,7 +44,7 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
   const storeCounts = getFrequencyCount(filteredOrders, "store");
 
   return (
-    <ChartCard title="Store Performance">
+    <ChartCard title={t("storePerformance")}>
       <div className="mb-1">
         <PizzaFilters
           pizzaType={pizzaType}
@@ -87,14 +90,16 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
               content={(props) => (
                 <ChartTooltip
                   {...props}
-                  valueFormatter={(value) => Number(value).toLocaleString()}
+                  valueFormatter={(value) =>
+                    Number(value).toLocaleString(localeFor(i18n.language))
+                  }
                 />
               )}
               cursor={{ fill: "rgba(79, 70, 229, 0.05)" }}
             />
             <Bar
               dataKey="value"
-              name="Orders"
+              name={t("orders")}
               radius={[7, 7, 2, 2]}
               maxBarSize={36}
               animationDuration={800}

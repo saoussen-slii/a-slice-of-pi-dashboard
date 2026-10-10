@@ -1,4 +1,6 @@
 import type { ChangeEvent } from "react";
+import { useTranslation } from "react-i18next";
+import { localeFor } from "../../i18n";
 
 type DateFiltersProps = {
   startDate: string;
@@ -13,14 +15,18 @@ const DateFilters = ({
   onStartDateChange,
   onEndDateChange,
 }: DateFiltersProps) => {
+  const { t, i18n } = useTranslation();
   return (
     <fieldset className="flex h-full w-full min-w-0 flex-col justify-center rounded-xl border border-indigo-100 bg-gradient-to-br from-white via-white to-indigo-50/70 p-6 text-left shadow-sm sm:p-8">
-      <legend className="sr-only">Filter orders by date</legend>
+      <legend className="sr-only">
+        {t("filterOrdersByDate")}
+      </legend>
       <div className="flex flex-col gap-4 sm:flex-row">
         <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
-          Start date
+          {t("startDate")}
           <input
             type="date"
+            lang={localeFor(i18n.language)}
             value={startDate}
             max={endDate || undefined}
             onChange={onStartDateChange}
@@ -28,9 +34,10 @@ const DateFilters = ({
           />
         </label>
         <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
-          End date
+          {t("endDate")}
           <input
             type="date"
+            lang={localeFor(i18n.language)}
             value={endDate}
             min={startDate || undefined}
             onChange={onEndDateChange}

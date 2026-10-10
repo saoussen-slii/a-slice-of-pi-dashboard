@@ -1,9 +1,13 @@
 import type { TooltipContentProps, TooltipValueType } from "recharts";
+import { useTranslation } from "react-i18next";
 import { CHART_COLORS } from "../constants";
+import { localeFor } from "../i18n";
+import type { MessageKey } from "../i18n";
 
 interface ChartTooltipProps
   extends Pick<TooltipContentProps, "active" | "payload" | "label"> {
   valueFormatter?: (value: TooltipValueType) => string;
+  monthLabel?: boolean;
 }
 
 const ChartTooltip = ({
@@ -11,19 +15,37 @@ const ChartTooltip = ({
   label,
   payload,
   valueFormatter = (value) => String(value),
+  monthLabel = false,
 }: ChartTooltipProps) => {
+  const { i18n, t } = useTranslation();
   if (!active || !payload?.length) return null;
+
+  const localizedLabel =
+    monthLabel && typeof label === "number"
+      ? new Date(2023, label, 1).toLocaleString(localeFor(i18n.language), {
+          month: "long",
+        })
+      : String(label ?? "");
 
   return (
     <div className="min-w-36 rounded-xl border border-gray-100 bg-white/95 px-3.5 py-3 shadow-xl shadow-gray-900/10 backdrop-blur-sm">
       <p className="mb-2.5 text-xs font-semibold tracking-wide text-gray-900">
-        {String(label ?? "")}
+        {localizedLabel}
       </p>
       <div className="space-y-2">
         {payload.map((entry, index) => {
-          const name = String(entry.name ?? entry.dataKey ?? "");
+          const rawName = String(entry.name ?? entry.dataKey ?? "");
+          const translationKey = tooltipTranslationKey(rawName);
+          const sizeSuffix = rawName.match(/^Size ([SML])$/)?.[1];
+          const name = sizeSuffix
+            ? `${t("size")} ${sizeSuffix}`
+            : translationKey
+              ? t(translationKey)
+              : rawName;
           const entryColor = String(entry.color ?? entry.fill ?? "");
-          const sizeColorIndex = ["Size S", "Size M", "Size L"].indexOf(name);
+          const sizeColorIndex = ["Size S", "Size M", "Size L"].indexOf(
+            rawName,
+          );
           const color =
             entryColor.startsWith("url(") || !entryColor
               ? CHART_COLORS[
@@ -57,6 +79,11 @@ const ChartTooltip = ({
       </div>
     </div>
   );
+};
+
+const tooltipTranslationKey = (name: string): MessageKey | undefined => {
+  if (name === "Orders") return "orders";
+  return undefined;
 };
 
 export default ChartTooltip;
