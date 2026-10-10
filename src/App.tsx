@@ -76,7 +76,7 @@ const App = () => {
       </main>
 
       <footer className="shrink-0 border-t border-gray-200 bg-white px-3 py-2 text-center text-xs text-gray-500">
-        <p>© 2026 A Slice of Pi</p>
+        <p>© 2023 A Slice of Pi</p>
       </footer>
     </div>
   );

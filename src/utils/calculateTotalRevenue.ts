@@ -13,7 +13,7 @@ const getItemRevenue = (item: OrderItem, prices: PriceGrid) =>
 export const calculateTotalRevenue = (
   orders: Order[],
   prices: PriceGrid,
-  targetYear: number = 2026,
+  targetYear: number = 2023,
 ): string => {
   return getOrderItemsForYear(orders, targetYear)
     .reduce((total, item) => total + getItemRevenue(item, prices), 0)
@@ -27,7 +27,7 @@ export const calculateTotalRevenue = (
 export const calculateTotalRevenueByMonth = (
   orders: Order[],
   prices: PriceGrid,
-  targetYear: number = 2026,
+  targetYear: number = 2023,
 ): { month: string; revenue: number }[] => {
   const monthlyRevenue: Record<string, number> = {};
   getOrderItemsForYear(orders, targetYear).forEach((item) => {
