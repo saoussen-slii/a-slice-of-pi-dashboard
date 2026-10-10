@@ -45,74 +45,75 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
 
   return (
     <ChartCard title={t("storePerformance")}>
-      <div className="mb-1">
-        <PizzaFilters
-          pizzaType={pizzaType}
-          pizzaSize={pizzaSize}
-          onPizzaTypeChange={setPizzaType}
-          onPizzaSizeChange={setPizzaSize}
-        />
-      </div>
       {storeCounts.length === 0 ? (
         <ChartEmptyState height={190} />
       ) : (
-        <ResponsiveContainer width="100%" height={190}>
-          <BarChart
-            data={storeCounts}
-            margin={{ top: 12, right: 12, left: 2, bottom: 4 }}
-          >
-            <CartesianGrid
-              vertical={false}
-              stroke="#E9EDF5"
-              strokeDasharray="3 6"
-            />
-            <XAxis
-              dataKey="name"
-              interval={0}
-              angle={-18}
-              textAnchor="end"
-              height={52}
-              axisLine={false}
-              tickLine={false}
-              tickMargin={10}
-              tick={{ fill: "#94A3B8", fontSize: 10, fontWeight: 500 }}
-              className="responsive-x-axis"
-            />
-            <YAxis
-              allowDecimals={false}
-              axisLine={false}
-              tickLine={false}
-              tickMargin={8}
-              width={36}
-              tick={{ fill: "#94A3B8", fontSize: 10, fontWeight: 500 }}
-            />
-            <Tooltip
-              content={(props) => (
-                <ChartTooltip
-                  {...props}
-                  valueFormatter={(value) =>
-                    Number(value).toLocaleString(localeFor(i18n.language))
-                  }
-                />
-              )}
-              cursor={{ fill: "rgba(79, 70, 229, 0.05)" }}
-            />
-            <Bar
-              dataKey="value"
-              name={t("orders")}
-              radius={[7, 7, 2, 2]}
-              maxBarSize={36}
-              animationDuration={800}
-              shape={(props: BarShapeProps) => (
-                <Rectangle
-                  {...props}
-                  fill={CHART_COLORS[props.index % CHART_COLORS.length]}
-                  radius={[7, 7, 2, 2]}
-                />
-              )}
-            />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="mb-1">
+          <PizzaFilters
+            pizzaType={pizzaType}
+            pizzaSize={pizzaSize}
+            onPizzaTypeChange={setPizzaType}
+            onPizzaSizeChange={setPizzaSize}
+          />
+
+          <ResponsiveContainer width="100%" height={190}>
+            <BarChart
+              data={storeCounts}
+              margin={{ top: 12, right: 12, left: 2, bottom: 4 }}
+            >
+              <CartesianGrid
+                vertical={false}
+                stroke="#E9EDF5"
+                strokeDasharray="3 6"
+              />
+              <XAxis
+                dataKey="name"
+                interval={0}
+                angle={-18}
+                textAnchor="end"
+                height={52}
+                axisLine={false}
+                tickLine={false}
+                tickMargin={10}
+                tick={{ fill: "#94A3B8", fontSize: 10, fontWeight: 500 }}
+                className="responsive-x-axis"
+              />
+              <YAxis
+                allowDecimals={false}
+                axisLine={false}
+                tickLine={false}
+                tickMargin={8}
+                width={36}
+                tick={{ fill: "#94A3B8", fontSize: 10, fontWeight: 500 }}
+              />
+              <Tooltip
+                content={(props) => (
+                  <ChartTooltip
+                    {...props}
+                    valueFormatter={(value) =>
+                      Number(value).toLocaleString(localeFor(i18n.language))
+                    }
+                  />
+                )}
+                cursor={{ fill: "rgba(79, 70, 229, 0.05)" }}
+              />
+              <Bar
+                dataKey="value"
+                name={t("orders")}
+                radius={[7, 7, 2, 2]}
+                maxBarSize={36}
+                animationDuration={800}
+                shape={(props: BarShapeProps) => (
+                  <Rectangle
+                    {...props}
+                    fill={CHART_COLORS[props.index % CHART_COLORS.length]}
+                    radius={[7, 7, 2, 2]}
+                  />
+                )}
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       )}
     </ChartCard>
   );
