@@ -7,9 +7,10 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Cell,
+  Rectangle,
   ResponsiveContainer,
 } from "recharts";
+import type { BarShapeProps } from "recharts";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
 import type { Order, PizzaSize, PizzaType } from "../../types.ts";
@@ -97,14 +98,14 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
               radius={[7, 7, 2, 2]}
               maxBarSize={36}
               animationDuration={800}
-            >
-              {storeCounts.map((__, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={CHART_COLORS[index % CHART_COLORS.length]}
+              shape={(props: BarShapeProps) => (
+                <Rectangle
+                  {...props}
+                  fill={CHART_COLORS[props.index % CHART_COLORS.length]}
+                  radius={[7, 7, 2, 2]}
                 />
-              ))}
-            </Bar>
+              )}
+            />
           </BarChart>
         </ResponsiveContainer>
       )}
