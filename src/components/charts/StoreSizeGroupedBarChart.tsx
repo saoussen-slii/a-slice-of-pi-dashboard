@@ -97,11 +97,20 @@ const StoreSizeGroupedBarChart = ({
               cursor={{ fill: "rgba(79, 70, 229, 0.05)" }}
             />
             <Legend
-              align="left"
-              verticalAlign="top"
-              iconType="circle"
-              iconSize={8}
-              wrapperStyle={{ fontSize: 11, color: "#64748B", paddingBottom: 8 }}
+              content={() => (
+                <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pb-2 text-xs text-gray-500">
+                  {pizzaSizes.map((size, index) => (
+                    <li key={size} className="flex items-center gap-2">
+                      <span
+                        aria-hidden="true"
+                        className="h-2.5 w-2.5 rounded-full"
+                        style={{ backgroundColor: CHART_COLORS[index] }}
+                      />
+                      Size {size}
+                    </li>
+                  ))}
+                </ul>
+              )}
             />
             {pizzaSizes.map((size) => (
               <Bar
