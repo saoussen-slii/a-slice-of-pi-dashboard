@@ -12,7 +12,12 @@ import {
 import { useTranslation } from "react-i18next";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
 import { CHART_COLORS } from "../../constants";
-import type { Order, PizzaSize, StoreLocation } from "../../types.ts";
+import {
+  STORE_LOCATIONS,
+  type Order,
+  type PizzaSize,
+  type StoreLocation,
+} from "../../types.ts";
 import { localeFor } from "../../i18n";
 
 interface StoreSizeGroupedBarChartProps {
@@ -34,7 +39,10 @@ const StoreSizeGroupedBarChart = ({ orders }: StoreSizeGroupedBarChartProps) => 
       });
     });
 
-    return Array.from(counts, ([store, sizes]) => ({ store, ...sizes }));
+    return STORE_LOCATIONS.flatMap((store) => {
+      const sizes = counts.get(store);
+      return sizes ? [{ store, ...sizes }] : [];
+    });
   }, [orders]);
 
   return (

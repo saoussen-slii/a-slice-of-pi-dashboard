@@ -7,12 +7,15 @@ export type PizzaType =
   | "Meatlovers"
   | "Pepperoni";
 
-export type StoreLocation =
-  | "Kanata"
-  | "Orleans"
-  | "Downtown"
-  | "Sandy Hill"
-  | "The Glebe";
+export const STORE_LOCATIONS = [
+  "Kanata",
+  "Orleans",
+  "Downtown",
+  "Sandy Hill",
+  "The Glebe",
+] as const;
+
+export type StoreLocation = (typeof STORE_LOCATIONS)[number];
 
 export type Sentiment = "delighted" | "happy" | "angry" | "sad";
 

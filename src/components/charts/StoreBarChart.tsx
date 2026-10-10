@@ -13,7 +13,7 @@ import {
 } from "recharts";
 import type { BarShapeProps } from "recharts";
 import { CHART_COLORS } from "../../constants";
-import { getFrequencyCount } from "../../utils";
+import { getOrderedStoreCounts } from "../../utils";
 import type { Order, PizzaSize, PizzaType } from "../../types.ts";
 import { PizzaFilters } from "../filters";
 import { ChartTooltip } from "../../common";
@@ -41,7 +41,9 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
         .filter((order) => order.items.length > 0),
     [orders, pizzaType, pizzaSize],
   );
-  const storeCounts = getFrequencyCount(filteredOrders, "store");
+  const storeCounts = getOrderedStoreCounts(
+    filteredOrders.map((order) => order.store),
+  );
 
   return (
     <ChartCard title={t("storePerformance")}>
