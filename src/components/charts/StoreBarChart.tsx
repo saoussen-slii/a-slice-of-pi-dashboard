@@ -50,7 +50,7 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
       {storeCounts.length === 0 ? (
         <ChartEmptyState />
       ) : (
-        <ResponsiveContainer width="100%" height={260}>
+        <ResponsiveContainer width="100%" height={220}>
           <BarChart
             data={storeCounts}
             margin={{

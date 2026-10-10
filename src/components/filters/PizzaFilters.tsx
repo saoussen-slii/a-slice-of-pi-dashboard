@@ -31,7 +31,7 @@ const PizzaFilters = ({
   };
 
   return (
-    <fieldset className="mx-auto mb-4 flex w-4/5 min-w-0 flex-col gap-3 border-0 p-0 sm:flex-row">
+    <fieldset className="mb-4 flex w-full min-w-0 flex-col gap-3 border-0 p-0 sm:flex-row">
       <legend className="sr-only">Filter orders by pizza</legend>
       <div className="flex min-w-0 flex-1 flex-col gap-1 text-left">
         <label

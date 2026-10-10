@@ -14,11 +14,11 @@ const DateFilters = ({
   onEndDateChange,
 }: DateFiltersProps) => {
   return (
-    <fieldset className="mx-auto w-full max-w-sm rounded-lg border border-gray-200 bg-white p-2.5 shadow-sm">
-      <legend className="px-1 text-sm font-semibold text-gray-800">
+    <fieldset className="w-full min-w-0 border-0 p-0 text-left">
+      <legend className="sr-only px-1 text-sm font-semibold text-gray-800">
         Filter orders by date
       </legend>
-      <div className="mt-1 flex flex-col gap-2 sm:flex-row">
+      <div className="mt-2 flex flex-col gap-3 sm:flex-row">
         <label className="flex min-w-0 flex-1 flex-col gap-1 text-xs font-medium text-gray-600">
           Start date
           <input

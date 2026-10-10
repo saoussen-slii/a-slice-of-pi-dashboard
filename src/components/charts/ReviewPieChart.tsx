@@ -23,7 +23,7 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
       {sentimentCounts.length === 0 ? (
         <ChartEmptyState />
       ) : (
-        <ResponsiveContainer width="100%" height={260}>
+        <ResponsiveContainer width="100%" height={220}>
           <PieChart>
             <Pie
               data={sentimentCounts}

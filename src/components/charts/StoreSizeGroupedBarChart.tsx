@@ -41,7 +41,7 @@ const StoreSizeGroupedBarChart = ({
       {salesByStore.length === 0 ? (
         <ChartEmptyState />
       ) : (
-        <ResponsiveContainer width="100%" height={260}>
+        <ResponsiveContainer width="100%" height={220}>
           <BarChart
             data={salesByStore}
             margin={{ top: 5, right: 20, left: 10, bottom: 5 }}

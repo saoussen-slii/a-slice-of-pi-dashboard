@@ -38,7 +38,7 @@ const App = () => {
   return (
     <div className="flex h-dvh w-full min-w-0 flex-col overflow-hidden bg-gray-50">
       <header className="shrink-0 border-b border-indigo-100 bg-indigo-50 px-4 py-3 text-indigo-950 shadow-sm sm:px-6">
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-2">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 sm:px-6 lg:px-8">
           <h1 className="m-0 justify-self-start text-left text-lg font-semibold tracking-tight text-indigo-950 sm:text-xl">
             🍕 Slice of Pi Dashboard
           </h1>
@@ -46,8 +46,8 @@ const App = () => {
         </div>
       </header>
 
-      <main className="mx-auto flex min-h-0 w-full min-w-0 max-w-6xl flex-1 flex-col gap-3 px-2 pb-2 pt-5 sm:px-3 sm:pb-3 sm:pt-6">
-        <div className="shrink-0">
+      <main className="mx-auto flex min-h-0 w-full min-w-0 max-w-7xl flex-1 flex-col px-4 pb-4 pt-6 sm:px-6 sm:pb-6 lg:px-8">
+        <div className="mb-6 flex w-full shrink-0 flex-col items-stretch justify-between gap-4 rounded-xl bg-white p-4 shadow-sm md:flex-row md:items-center">
           <DateFilters
             startDate={startDate}
             endDate={endDate}
@@ -55,16 +55,15 @@ const App = () => {
             onEndDateChange={handleEndDateChange}
           />
         </div>
-        <div className="shrink-0">
+        <div className="mb-6 w-full shrink-0">
           <TotalRevenueCard />
         </div>
-
         <section
           aria-label="Dashboard charts"
           tabIndex={0}
           className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
         >
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="md:col-span-2">
               <MonthlyRevenueLineChart orders={filteredOrders} />
             </div>
