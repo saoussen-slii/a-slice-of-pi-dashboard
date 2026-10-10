@@ -31,7 +31,7 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
   return (
     <ChartCard title={t("reviewSentiment")}>
       {sentimentCounts.length === 0 ? (
-        <ChartEmptyState height={190} />
+        <ChartEmptyState height={190} reserveFilterSpace />
       ) : (
         <div className="pt-2">
           <ResponsiveContainer width="100%" height={200}>

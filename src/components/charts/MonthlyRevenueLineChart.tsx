@@ -36,7 +36,7 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
   return (
     <ChartCard title={`${t("monthlyRevenue")} 2023`}>
       {monthlyRevenueData.length === 0 ? (
-        <ChartEmptyState />
+        <ChartEmptyState height={190} reserveFilterSpace />
       ) : (
         <ResponsiveContainer width="100%" height={240}>
           <AreaChart

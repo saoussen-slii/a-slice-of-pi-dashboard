@@ -26,7 +26,9 @@ interface StoreSizeGroupedBarChartProps {
 
 const pizzaSizes: PizzaSize[] = ["S", "M", "L"];
 
-const StoreSizeGroupedBarChart = ({ orders }: StoreSizeGroupedBarChartProps) => {
+const StoreSizeGroupedBarChart = ({
+  orders,
+}: StoreSizeGroupedBarChartProps) => {
   const { t, i18n } = useTranslation();
   const salesByStore = useMemo(() => {
     const counts = new Map<StoreLocation, Record<PizzaSize, number>>();
@@ -48,7 +50,7 @@ const StoreSizeGroupedBarChart = ({ orders }: StoreSizeGroupedBarChartProps) => 
   return (
     <ChartCard title={t("pizzaSalesBySize")}>
       {salesByStore.length === 0 ? (
-        <ChartEmptyState />
+        <ChartEmptyState height={190} reserveFilterSpace />
       ) : (
         <ResponsiveContainer width="100%" height={240}>
           <BarChart
