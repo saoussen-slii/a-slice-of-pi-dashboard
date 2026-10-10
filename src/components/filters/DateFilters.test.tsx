@@ -17,6 +17,10 @@ describe("DateFilters", () => {
     expect(screen.getByRole("group", { name: "Filter orders by date" })).toBeInTheDocument();
     expect(screen.getByLabelText("Start date")).toHaveValue("2023-01-01");
     expect(screen.getByLabelText("End date")).toHaveValue("2023-12-31");
+    expect(screen.getByLabelText("Start date")).toHaveAttribute("min", "2023-01-01");
+    expect(screen.getByLabelText("Start date")).toHaveAttribute("max", "2023-12-31");
+    expect(screen.getByLabelText("End date")).toHaveAttribute("min", "2023-01-01");
+    expect(screen.getByLabelText("End date")).toHaveAttribute("max", "2023-12-31");
   });
 
   it("calls the matching callback when a date changes", () => {
