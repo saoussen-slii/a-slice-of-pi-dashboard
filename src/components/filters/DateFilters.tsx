@@ -22,9 +22,10 @@ const DateFilters = ({
         {t("filterOrdersByDate")}
       </legend>
       <div className="flex flex-col gap-4 sm:flex-row">
-        <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
-          {t("startDate")}
+        <div className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
+          <label htmlFor="start-date">{t("startDate")}</label>
           <input
+            id="start-date"
             type="date"
             lang={localeFor(i18n.language)}
             value={startDate}
@@ -32,10 +33,11 @@ const DateFilters = ({
             onChange={onStartDateChange}
             className="w-full rounded-lg border border-indigo-100 bg-white/90 px-3 py-2.5 text-sm font-medium text-gray-800 shadow-sm shadow-indigo-950/[0.03] transition-all hover:border-indigo-200 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 [color-scheme:light]"
           />
-        </label>
-        <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
-          {t("endDate")}
+        </div>
+        <div className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
+          <label htmlFor="end-date">{t("endDate")}</label>
           <input
+            id="end-date"
             type="date"
             lang={localeFor(i18n.language)}
             value={endDate}
@@ -43,7 +45,7 @@ const DateFilters = ({
             onChange={onEndDateChange}
             className="w-full rounded-lg border border-indigo-100 bg-white/90 px-3 py-2.5 text-sm font-medium text-gray-800 shadow-sm shadow-indigo-950/[0.03] transition-all hover:border-indigo-200 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 [color-scheme:light]"
           />
-        </label>
+        </div>
       </div>
     </fieldset>
   );
