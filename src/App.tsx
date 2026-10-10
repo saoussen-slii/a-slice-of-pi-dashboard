@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { ChangeEvent } from "react";
 import {
   ReviewPieChart,
   StoreBarChart,
@@ -30,14 +29,6 @@ const App = () => {
     () => filterByDateRange(reviews as Review[], startDate, endDate),
     [reviews, startDate, endDate],
   );
-
-  const handleStartDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setStartDate(event.currentTarget.value);
-  };
-
-  const handleEndDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEndDate(event.currentTarget.value);
-  };
 
   return (
     <div
@@ -81,8 +72,8 @@ const App = () => {
             <DateFilters
               startDate={startDate}
               endDate={endDate}
-              onStartDateChange={handleStartDateChange}
-              onEndDateChange={handleEndDateChange}
+              onStartDateChange={setStartDate}
+              onEndDateChange={setEndDate}
             />
           </div>
         </div>

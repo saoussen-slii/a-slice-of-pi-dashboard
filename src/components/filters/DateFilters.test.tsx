@@ -1,10 +1,10 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import DateFilters from "./DateFilters";
 import i18n from "../../i18n";
 
 describe("DateFilters", () => {
-  it("renders date fields with associated labels and values", () => {
+  it("renders accessible date pickers with ISO-formatted values", () => {
     render(
       <DateFilters
         startDate="2023-01-01"
@@ -17,33 +17,96 @@ describe("DateFilters", () => {
     expect(screen.getByRole("group", { name: "Filter orders by date" })).toBeInTheDocument();
     expect(screen.getByLabelText("Start date")).toHaveValue("2023-01-01");
     expect(screen.getByLabelText("End date")).toHaveValue("2023-12-31");
-    expect(screen.getByLabelText("Start date")).toHaveAttribute("min", "2023-01-01");
-    expect(screen.getByLabelText("Start date")).toHaveAttribute("max", "2023-12-31");
-    expect(screen.getByLabelText("End date")).toHaveAttribute("min", "2023-01-01");
-    expect(screen.getByLabelText("End date")).toHaveAttribute("max", "2023-12-31");
+    expect(screen.getByLabelText("Start date")).toHaveAttribute(
+      "aria-describedby",
+      "start-date-help",
+    );
+    expect(screen.getByLabelText("End date")).toHaveAttribute(
+      "aria-describedby",
+      "end-date-help",
+    );
   });
 
-  it("calls the matching callback when a date changes", () => {
+  it("selects a date using keyboard navigation and returns ISO format", () => {
     const onStartDateChange = vi.fn();
-    const onEndDateChange = vi.fn();
+    render(
+      <DateFilters
+        startDate="2023-01-01"
+        endDate=""
+        onStartDateChange={onStartDateChange}
+        onEndDateChange={vi.fn()}
+      />,
+    );
+
+    const input = screen.getByLabelText("Start date");
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+    fireEvent.keyDown(input, { key: "ArrowDown" });
+
+    const calendar = within(screen.getByRole("dialog")).getByRole("rowgroup", {
+      name: "Month January, 2023",
+    });
+    const selectedDay = within(calendar).getByRole("gridcell", {
+      name: "Choose Sunday, January 1st, 2023",
+    });
+    fireEvent.keyDown(selectedDay, { key: "ArrowRight" });
+    fireEvent.keyDown(
+      within(calendar).getByRole("gridcell", {
+        name: "Choose Monday, January 2nd, 2023",
+      }),
+      { key: "Enter" },
+    );
+
+    expect(onStartDateChange).toHaveBeenCalledWith("2023-01-02");
+  });
+
+  it("prevents navigating before 2023", () => {
     render(
       <DateFilters
         startDate=""
         endDate=""
-        onStartDateChange={onStartDateChange}
-        onEndDateChange={onEndDateChange}
+        onStartDateChange={vi.fn()}
+        onEndDateChange={vi.fn()}
       />,
     );
 
-    fireEvent.change(screen.getByLabelText("Start date"), {
-      target: { value: "2023-02-01" },
-    });
-    fireEvent.change(screen.getByLabelText("End date"), {
-      target: { value: "2023-03-01" },
-    });
+    const input = screen.getByLabelText("Start date");
+    fireEvent.click(input);
 
-    expect(onStartDateChange).toHaveBeenCalledOnce();
-    expect(onEndDateChange).toHaveBeenCalledOnce();
+    const calendar = within(screen.getByRole("dialog")).getByRole("rowgroup", {
+      name: "Month January, 2023",
+    });
+    expect(
+      within(calendar).getByRole("gridcell", {
+        name: "Choose Sunday, January 1st, 2023",
+      }),
+    ).toHaveAttribute("aria-disabled", "false");
+    expect(
+      within(screen.getByRole("dialog")).queryByRole("button", {
+        name: "Previous month",
+      }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("prevents navigating past 2023", () => {
+    render(
+      <DateFilters
+        startDate=""
+        endDate="2023-12-31"
+        onStartDateChange={vi.fn()}
+        onEndDateChange={vi.fn()}
+      />,
+    );
+    const endDateInput = screen.getByLabelText("End date");
+    fireEvent.click(endDateInput);
+    const calendar = within(screen.getByRole("dialog")).getByRole("rowgroup", {
+      name: "Month December, 2023",
+    });
+    expect(calendar).toBeInTheDocument();
+    expect(
+      within(screen.getByRole("dialog")).queryByRole("button", {
+        name: "Next month",
+      }),
+    ).not.toBeInTheDocument();
   });
 
   it("updates labels when the active language changes", async () => {
