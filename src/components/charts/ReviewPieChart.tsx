@@ -9,7 +9,7 @@ import {
 import type { Review } from "../../types.ts";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
-import { ChartCard, ChartEmptyState } from "../../common";
+import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
 
 interface ReviewPieChartProps {
   reviews: Review[];
@@ -21,19 +21,23 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
   return (
     <ChartCard title="Review Sentiment Distribution">
       {sentimentCounts.length === 0 ? (
-        <ChartEmptyState />
+        <ChartEmptyState height={190} />
       ) : (
-        <ResponsiveContainer width="100%" height={220}>
+        <ResponsiveContainer width="100%" height={190}>
           <PieChart>
             <Pie
               data={sentimentCounts}
               dataKey="value"
               nameKey="name"
               cx="50%"
-              cy="50%"
-              outerRadius={80}
-              fill="#8884d8"
-              label
+              cy="48%"
+              innerRadius={54}
+              outerRadius={82}
+              paddingAngle={4}
+              cornerRadius={5}
+              stroke="#fff"
+              strokeWidth={3}
+              animationDuration={900}
             >
               {sentimentCounts.map((__, index) => (
                 <Cell
@@ -42,8 +46,21 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
                 />
               ))}
             </Pie>
-            <Tooltip />
-            <Legend />
+            <Tooltip
+              content={(props) => (
+                <ChartTooltip
+                  {...props}
+                  valueFormatter={(value) => Number(value).toLocaleString()}
+                />
+              )}
+            />
+            <Legend
+              align="center"
+              verticalAlign="bottom"
+              iconType="circle"
+              iconSize={8}
+              wrapperStyle={{ fontSize: 11, color: "#64748B" }}
+            />
           </PieChart>
         </ResponsiveContainer>
       )}

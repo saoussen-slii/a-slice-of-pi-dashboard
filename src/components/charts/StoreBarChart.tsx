@@ -8,13 +8,13 @@ import {
   CartesianGrid,
   Tooltip,
   Cell,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import { CHART_COLORS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
 import type { Order, PizzaSize, PizzaType } from "../../types.ts";
 import { PizzaFilters } from "../filters";
+import { ChartTooltip } from "../../common";
 
 interface StoreBarChartProps {
   orders: Order[];
@@ -41,38 +41,63 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
 
   return (
     <ChartCard title="Store Performance">
-      <PizzaFilters
-        pizzaType={pizzaType}
-        pizzaSize={pizzaSize}
-        onPizzaTypeChange={setPizzaType}
-        onPizzaSizeChange={setPizzaSize}
-      />
+      <div className="mb-1">
+        <PizzaFilters
+          pizzaType={pizzaType}
+          pizzaSize={pizzaSize}
+          onPizzaTypeChange={setPizzaType}
+          onPizzaSizeChange={setPizzaSize}
+        />
+      </div>
       {storeCounts.length === 0 ? (
-        <ChartEmptyState />
+        <ChartEmptyState height={190} />
       ) : (
-        <ResponsiveContainer width="100%" height={220}>
+        <ResponsiveContainer width="100%" height={190}>
           <BarChart
             data={storeCounts}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
+            margin={{ top: 12, right: 12, left: 2, bottom: 4 }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid
+              vertical={false}
+              stroke="#E9EDF5"
+              strokeDasharray="3 6"
+            />
             <XAxis
               dataKey="name"
               interval={0}
-              angle={-25}
+              angle={-18}
               textAnchor="end"
-              height={60}
+              height={52}
+              axisLine={false}
+              tickLine={false}
+              tickMargin={10}
+              tick={{ fill: "#94A3B8", fontSize: 10, fontWeight: 500 }}
               className="responsive-x-axis"
             />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="value" name="Number of Orders">
+            <YAxis
+              allowDecimals={false}
+              axisLine={false}
+              tickLine={false}
+              tickMargin={8}
+              width={36}
+              tick={{ fill: "#94A3B8", fontSize: 10, fontWeight: 500 }}
+            />
+            <Tooltip
+              content={(props) => (
+                <ChartTooltip
+                  {...props}
+                  valueFormatter={(value) => Number(value).toLocaleString()}
+                />
+              )}
+              cursor={{ fill: "rgba(79, 70, 229, 0.05)" }}
+            />
+            <Bar
+              dataKey="value"
+              name="Orders"
+              radius={[7, 7, 2, 2]}
+              maxBarSize={36}
+              animationDuration={800}
+            >
               {storeCounts.map((__, index) => (
                 <Cell
                   key={`cell-${index}`}

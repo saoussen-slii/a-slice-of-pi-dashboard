@@ -1,5 +1,9 @@
-const ChartEmptyState = () => (
-  <div className="flex h-[220px] items-center justify-center px-4">
+interface ChartEmptyStateProps {
+  height?: number;
+}
+
+const ChartEmptyState = ({ height = 220 }: ChartEmptyStateProps) => (
+  <div className="flex items-center justify-center px-4" style={{ height }}>
     <div
       role="status"
       className="flex w-full max-w-sm flex-col items-center gap-2 rounded-xl border border-indigo-100 bg-indigo-50/70 px-6 py-5 text-center"

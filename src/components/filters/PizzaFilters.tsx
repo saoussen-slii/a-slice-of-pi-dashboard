@@ -31,12 +31,12 @@ const PizzaFilters = ({
   };
 
   return (
-    <fieldset className="mb-4 flex w-full min-w-0 flex-col gap-3 border-0 p-0 sm:flex-row">
+    <fieldset className="mb-2 flex w-full min-w-0 flex-col gap-2 border-0 p-0 sm:flex-row">
       <legend className="sr-only">Filter orders by pizza</legend>
       <div className="flex min-w-0 flex-1 flex-col gap-1 text-left">
         <label
           htmlFor="pizza-type"
-          className="text-sm font-medium text-gray-700"
+          className="text-xs font-medium text-gray-600"
         >
           Pizza Type
         </label>
@@ -44,7 +44,7 @@ const PizzaFilters = ({
           id="pizza-type"
           value={pizzaType}
           onChange={handlePizzaTypeChange}
-          className="w-full rounded-md border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+          className="w-full rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-xs text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
           <option value="">All Types</option>
           {pizzaTypes.map((type) => (
@@ -57,7 +57,7 @@ const PizzaFilters = ({
       <div className="flex min-w-0 flex-1 flex-col gap-1 text-left">
         <label
           htmlFor="pizza-size"
-          className="text-sm font-medium text-gray-700"
+          className="text-xs font-medium text-gray-600"
         >
           Pizza Size
         </label>
@@ -65,7 +65,7 @@ const PizzaFilters = ({
           id="pizza-size"
           value={pizzaSize}
           onChange={handlePizzaSizeChange}
-          className="w-full rounded-md border border-gray-100 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+          className="w-full rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-xs text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
           <option value="">All Sizes</option>
           {pizzaSizes.map((size) => (
