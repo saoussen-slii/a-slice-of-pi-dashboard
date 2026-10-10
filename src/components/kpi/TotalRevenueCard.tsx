@@ -4,10 +4,12 @@ import type { Order } from "../../types.ts";
 
 const TotalRevenueCard = () => {
   return (
-    <section className="min-w-0 rounded-lg border border-gray-200 bg-white p-2.5 text-center shadow-sm transition-shadow duration-200 hover:shadow-md">
-      <h2>Total Revenue 2026</h2>
-      <p className="mt-2 text-2xl font-semibold tracking-tight text-gray-900">
-        {calculateTotalRevenue(orders as Order[], prices, 2026)}
+    <section className="w-full rounded-xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-cyan-50/70 p-6 text-left shadow-sm sm:p-8">
+      <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-indigo-700">
+        Total Revenue / 2023
+      </h2>
+      <p className="mt-3 text-4xl font-bold tracking-tight text-indigo-400 sm:text-5xl">
+        {calculateTotalRevenue(orders as Order[], prices, 2023)}
       </p>
     </section>
   );

@@ -38,7 +38,7 @@ const App = () => {
   return (
     <div className="flex h-dvh w-full min-w-0 flex-col overflow-hidden bg-gray-50">
       <header className="shrink-0 border-b border-indigo-100 bg-indigo-50 px-4 py-3 text-indigo-950 shadow-sm sm:px-6">
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-2">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 sm:px-6 lg:px-8">
           <h1 className="m-0 justify-self-start text-left text-lg font-semibold tracking-tight text-indigo-950 sm:text-xl">
             🍕 Slice of Pi Dashboard
           </h1>
@@ -46,25 +46,24 @@ const App = () => {
         </div>
       </header>
 
-      <main className="mx-auto flex min-h-0 w-full min-w-0 max-w-6xl flex-1 flex-col gap-3 px-2 pb-2 pt-5 sm:px-3 sm:pb-3 sm:pt-6">
-        <div className="shrink-0">
-          <DateFilters
-            startDate={startDate}
-            endDate={endDate}
-            onStartDateChange={handleStartDateChange}
-            onEndDateChange={handleEndDateChange}
-          />
-        </div>
-        <div className="shrink-0">
+      <main className="mx-auto flex min-h-0 w-full min-w-0 max-w-7xl flex-1 flex-col px-4 pb-4 pt-6 sm:px-6 sm:pb-6 lg:px-8">
+        <div className="mb-6 grid w-full shrink-0 grid-cols-1 items-stretch gap-4 md:grid-cols-2 md:gap-6">
           <TotalRevenueCard />
+          <div className="w-full">
+            <DateFilters
+              startDate={startDate}
+              endDate={endDate}
+              onStartDateChange={handleStartDateChange}
+              onEndDateChange={handleEndDateChange}
+            />
+          </div>
         </div>
-
         <section
           aria-label="Dashboard charts"
           tabIndex={0}
-          className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
+          className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-1 pb-2 pt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
         >
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="md:col-span-2">
               <MonthlyRevenueLineChart orders={filteredOrders} />
             </div>
@@ -76,7 +75,7 @@ const App = () => {
       </main>
 
       <footer className="shrink-0 border-t border-gray-200 bg-white px-3 py-2 text-center text-xs text-gray-500">
-        <p>© 2026 A Slice of Pi</p>
+        <p>© 2023 A Slice of Pi</p>
       </footer>
     </div>
   );
