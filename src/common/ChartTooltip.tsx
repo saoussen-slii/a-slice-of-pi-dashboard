@@ -1,6 +1,6 @@
 import type { TooltipContentProps, TooltipValueType } from "recharts";
 import { useTranslation } from "react-i18next";
-import { CHART_COLORS } from "../constants";
+import { CHART_COLORS, DASHBOARD_YEAR } from "../constants";
 import { localeFor } from "../i18n";
 import type { MessageKey } from "../i18n";
 
@@ -26,9 +26,12 @@ const ChartTooltip = ({
 
   const localizedLabel =
     monthLabel && typeof label === "number"
-      ? new Date(2023, label, 1).toLocaleString(localeFor(i18n.language), {
-          month: "long",
-        })
+      ? new Date(DASHBOARD_YEAR, label, 1).toLocaleString(
+          localeFor(i18n.language),
+          {
+            month: "long",
+          },
+        )
       : String(label ?? "");
 
   return (

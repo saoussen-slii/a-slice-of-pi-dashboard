@@ -4,11 +4,11 @@ import { calculateTotalRevenue } from "../../utils";
 import { orders, prices } from "../../data";
 import type { Order } from "../../types.ts";
 import { localeFor } from "../../i18n";
-
-const DEFAULT_YEAR = 2023;
+import { DASHBOARD_YEAR } from "../../constants";
 
 const TotalRevenueCard = () => {
   const { t, i18n } = useTranslation();
+
   return (
     <section
       aria-labelledby="total-revenue-title"
@@ -20,13 +20,13 @@ const TotalRevenueCard = () => {
             id="total-revenue-title"
             className="text-sm font-semibold uppercase tracking-[0.12em] text-indigo-700"
           >
-            {t("totalRevenue")} / {DEFAULT_YEAR}
+            {t("totalRevenue")} / {DASHBOARD_YEAR}
           </h2>
           <p className="mt-3 text-4xl font-bold tracking-tight text-indigo-400 sm:text-5xl">
             {calculateTotalRevenue(
               orders as Order[],
               prices,
-              DEFAULT_YEAR,
+              DASHBOARD_YEAR,
               localeFor(i18n.language),
             )}
           </p>
@@ -36,4 +36,5 @@ const TotalRevenueCard = () => {
     </section>
   );
 };
+
 export default TotalRevenueCard;

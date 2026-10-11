@@ -11,6 +11,7 @@ import TotalRevenueCard from "./components/kpi";
 import { orders, reviews } from "./data";
 import type { Order, Review } from "./types.ts";
 import { filterByDateRange } from "./utils";
+import { DASHBOARD_YEAR } from "./constants";
 
 const allOrders = orders as Order[];
 
@@ -94,7 +95,7 @@ const App = () => {
       </main>
 
       <footer className="shrink-0 border-t border-gray-200 bg-white px-3 py-2 text-center text-xs text-gray-500">
-        <p>© 2023 A Slice of Pi</p>
+        <p>© {DASHBOARD_YEAR} A Slice of Pi</p>
       </footer>
     </div>
   );

@@ -3,9 +3,8 @@ import { useTranslation } from "react-i18next";
 import "react-datepicker/dist/react-datepicker.css";
 import "./DateFilters.css";
 import DatePickerField from "./DatePickerField";
+import { MIN_DATE, MAX_DATE } from "../../constants";
 
-const MIN_DATE = "2023-01-01";
-const MAX_DATE = "2023-12-31";
 const RANGE_HELP_ID = "date-range-help";
 const minDate = parseISO(MIN_DATE);
 const maxDate = parseISO(MAX_DATE);
