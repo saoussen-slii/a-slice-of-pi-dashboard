@@ -10,6 +10,7 @@ interface ChartTooltipProps extends Pick<
 > {
   valueFormatter?: (value: TooltipValueType) => string;
   monthLabel?: boolean;
+  emojiByName?: Record<string, string>;
 }
 
 const ChartTooltip = ({
@@ -18,6 +19,7 @@ const ChartTooltip = ({
   payload,
   valueFormatter = (value) => String(value),
   monthLabel = false,
+  emojiByName,
 }: ChartTooltipProps) => {
   const { i18n, t } = useTranslation();
   if (!active || !payload?.length) return null;
@@ -44,6 +46,7 @@ const ChartTooltip = ({
             : translationKey
               ? t(translationKey)
               : rawName;
+          const emoji = emojiByName?.[rawName];
           const entryColor = String(entry.color ?? entry.fill ?? "");
           const sizeColorIndex = ["Size S", "Size M", "Size L"].indexOf(
             rawName,
@@ -63,13 +66,18 @@ const ChartTooltip = ({
               className="flex items-center justify-between gap-6 text-xs"
             >
               <span className="flex items-center gap-2 text-gray-500">
-                <span
-                  className="h-2 w-2 rounded-full ring-2 ring-offset-1"
-                  style={{
-                    backgroundColor: color,
-                    boxShadow: `0 0 0 2px ${color}33`,
-                  }}
-                />
+                {emoji ? (
+                  <span aria-hidden="true">{emoji}</span>
+                ) : (
+                  <span
+                    aria-hidden="true"
+                    className="h-2 w-2 rounded-full ring-2 ring-offset-1"
+                    style={{
+                      backgroundColor: color,
+                      boxShadow: `0 0 0 2px ${color}33`,
+                    }}
+                  />
+                )}
                 {name}
               </span>
               <span className="font-semibold tabular-nums text-gray-900">

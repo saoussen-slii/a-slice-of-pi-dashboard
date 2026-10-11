@@ -2,9 +2,8 @@ import { PieChart, Legend, ResponsiveContainer, Pie, Tooltip } from "recharts";
 import { useTranslation } from "react-i18next";
 import type { Review, Sentiment } from "../../types.ts";
 import { REVIEW_SENTIMENTS } from "../../constants";
-import { getFrequencyCount } from "../../utils";
+import { formatNumber, getFrequencyCount } from "../../utils";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
-import { formatNumber } from "../../utils";
 
 interface ReviewPieChartProps {
   reviews: Review[];
@@ -13,17 +12,20 @@ interface ReviewPieChartProps {
 const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
   const { t, i18n } = useTranslation();
   const sentimentCounts = getFrequencyCount(reviews, "sentiment").map(
-    (sentiment) => {
-      const key = sentiment.name as Sentiment;
-      const config = REVIEW_SENTIMENTS[key];
+    ({ name, value }) => {
+      const sentiment = name as Sentiment;
+      const config = REVIEW_SENTIMENTS[sentiment];
       return {
-        ...sentiment,
-        sentiment: key,
+        value,
+        sentiment,
         name: t(config.label),
         fill: config.color,
         emoji: config.emoji,
       };
     },
+  );
+  const emojiByName = Object.fromEntries(
+    sentimentCounts.map(({ name, emoji }) => [name, emoji]),
   );
 
   return (
@@ -52,6 +54,7 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
                 content={(props) => (
                   <ChartTooltip
                     {...props}
+                    emojiByName={emojiByName}
                     valueFormatter={(value) =>
                       formatNumber(Number(value), i18n.language)
                     }
@@ -60,7 +63,7 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
               />
               <Legend
                 content={() => (
-                  <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 pt-1 text-xs text-gray-600">
+                  <ul className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs text-gray-600">
                     {sentimentCounts.map(({ sentiment, name, emoji }) => (
                       <li key={sentiment} className="flex items-center gap-1.5">
                         <span aria-hidden="true">{emoji}</span>
