@@ -1,31 +1,29 @@
 import { PieChart, Legend, ResponsiveContainer, Pie, Tooltip } from "recharts";
 import { useTranslation } from "react-i18next";
 import type { Review, Sentiment } from "../../types.ts";
-import { CHART_COLORS } from "../../constants";
+import { REVIEW_SENTIMENTS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
 import { localeFor } from "../../i18n";
-import type { MessageKey } from "../../i18n";
 
 interface ReviewPieChartProps {
   reviews: Review[];
 }
 
-const sentimentMessages: Record<Sentiment, MessageKey> = {
-  angry: "angry",
-  delighted: "delighted",
-  happy: "happy",
-  sad: "sad",
-};
-
 const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
   const { t, i18n } = useTranslation();
   const sentimentCounts = getFrequencyCount(reviews, "sentiment").map(
-    (sentiment, index) => ({
-      ...sentiment,
-      name: t(sentimentMessages[sentiment.name as Sentiment]),
-      fill: CHART_COLORS[index % CHART_COLORS.length],
-    }),
+    (sentiment) => {
+      const key = sentiment.name as Sentiment;
+      const config = REVIEW_SENTIMENTS[key];
+      return {
+        ...sentiment,
+        sentiment: key,
+        name: t(config.label),
+        fill: config.color,
+        emoji: config.emoji,
+      };
+    },
   );
 
   return (
@@ -61,10 +59,18 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
                 )}
               />
               <Legend
+                content={() => (
+                  <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 pt-1 text-xs text-gray-600">
+                    {sentimentCounts.map(({ sentiment, name, emoji }) => (
+                      <li key={sentiment} className="flex items-center gap-1.5">
+                        <span aria-hidden="true">{emoji}</span>
+                        <span>{name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 verticalAlign="bottom"
                 align="center"
-                iconType="circle"
-                iconSize={8}
                 wrapperStyle={{
                   fontSize: 11,
                   color: "#64748B",
