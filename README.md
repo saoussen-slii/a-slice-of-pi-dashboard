@@ -15,6 +15,10 @@ Built with React, TypeScript, Vite, Tailwind CSS, Recharts, and React DatePicker
 
 ---
 
+## 📸 Screenshot
+
+![A Slice of Pi dashboard screenshot](./screenshots/slice-of-pi-dashboard.png)
+
 ## ✨ Dashboard highlights
 
 | Visualization                     | What it shows                                                                |
@@ -36,20 +40,21 @@ revenue card always reflects all 2023 orders.
 ## 🚀 Get started
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Open the local URL printed by Vite in your terminal.
 
 ## 🧰 Commands
 
-| Command           | Purpose                                                |
-| ----------------- | ------------------------------------------------------ |
-| `npm run dev`     | Start the local development server.                    |
-| `npm run build`   | Type-check and create the production build in `dist/`. |
-| `npm run preview` | Preview the production build locally.                  |
-| `npm run lint`    | Run ESLint.                                            |
+| Command        | Purpose                                                |
+| -------------- | ------------------------------------------------------ |
+| `pnpm dev`     | Start the local development server.                    |
+| `pnpm build`   | Type-check and create the production build in `dist/`. |
+| `pnpm preview` | Preview the production build locally.                  |
+| `pnpm lint`    | Run ESLint.                                            |
+| `pnpm test`    | Run the test suite.                                    |
 
 ## 🗂️ Project layout
 
@@ -60,7 +65,7 @@ src/
 │   ├── charts/             Revenue, store, and sentiment charts
 │   ├── filters/            Date and pizza filters
 │   └── kpi/                Revenue summary card
-├── constants/              Shared chart colors
+├── constants/              Shared chart colors, pizza size
 ├── data/                   Order, review, and pricing JSON
 ├── utils/                  Filtering and calculation helpers
 ├── App.tsx                 Dashboard state and layout
