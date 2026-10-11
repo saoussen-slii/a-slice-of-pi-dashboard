@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { filterByDateRange } from "./filterByDateRange";
+import { filterByDateRange } from "../filterByDateRange";
 
 const orders = [
   { id: 1, date: "2023-01-01" },

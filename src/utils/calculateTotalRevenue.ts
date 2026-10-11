@@ -1,4 +1,5 @@
 import type { Order, OrderItem, PriceGrid } from "../types.ts";
+import { DASHBOARD_YEAR } from "../constants";
 
 const getOrderItemsForYear = (orders: Order[], targetYear: number) =>
   orders
@@ -13,7 +14,7 @@ const getItemRevenue = (item: OrderItem, prices: PriceGrid) =>
 export const calculateTotalRevenue = (
   orders: Order[],
   prices: PriceGrid,
-  targetYear: number = 2023,
+  targetYear: number = DASHBOARD_YEAR,
   locale: string = "en-CA",
 ): string => {
   return getOrderItemsForYear(orders, targetYear)
@@ -28,7 +29,7 @@ export const calculateTotalRevenue = (
 export const calculateTotalRevenueByMonth = (
   orders: Order[],
   prices: PriceGrid,
-  targetYear: number = 2023,
+  targetYear: number = DASHBOARD_YEAR,
 ): { month: number; revenue: number }[] => {
   const monthlyRevenue: Record<number, number> = {};
   getOrderItemsForYear(orders, targetYear).forEach((item) => {

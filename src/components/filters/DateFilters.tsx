@@ -1,12 +1,19 @@
-import type { ChangeEvent } from "react";
+import { parseISO } from "date-fns";
 import { useTranslation } from "react-i18next";
-import { localeFor } from "../../i18n";
+import "react-datepicker/dist/react-datepicker.css";
+import "./DateFilters.css";
+import DatePickerField from "./DatePickerField";
+import { MIN_DATE, MAX_DATE } from "../../constants";
+
+const RANGE_HELP_ID = "date-range-help";
+const minDate = parseISO(MIN_DATE);
+const maxDate = parseISO(MAX_DATE);
 
 type DateFiltersProps = {
   startDate: string;
   endDate: string;
-  onStartDateChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onEndDateChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onStartDateChange: (date: string) => void;
+  onEndDateChange: (date: string) => void;
 };
 
 const DateFilters = ({
@@ -15,37 +22,37 @@ const DateFilters = ({
   onStartDateChange,
   onEndDateChange,
 }: DateFiltersProps) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const selectedStartDate = startDate ? parseISO(startDate) : minDate;
+  const selectedEndDate = endDate ? parseISO(endDate) : maxDate;
+
   return (
     <fieldset className="flex h-full w-full min-w-0 flex-col justify-center rounded-xl border border-indigo-100 bg-gradient-to-br from-white via-white to-indigo-50/70 p-6 text-left shadow-sm sm:p-8">
-      <legend className="sr-only">
-        {t("filterOrdersByDate")}
-      </legend>
-      <div className="flex flex-col gap-4 sm:flex-row">
-        <div className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
-          <label htmlFor="start-date">{t("startDate")}</label>
-          <input
+      <legend className="sr-only">{t("filterOrdersByDate")}</legend>
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <DatePickerField
             id="start-date"
-            type="date"
-            lang={localeFor(i18n.language)}
+            label={t("startDate")}
             value={startDate}
-            max={endDate || undefined}
+            minDate={minDate}
+            maxDate={selectedEndDate}
+            rangeHelpId={RANGE_HELP_ID}
             onChange={onStartDateChange}
-            className="w-full rounded-lg border border-indigo-100 bg-white/90 px-3 py-2.5 text-sm font-medium text-gray-800 shadow-sm shadow-indigo-950/[0.03] transition-all hover:border-indigo-200 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 [color-scheme:light]"
           />
-        </div>
-        <div className="flex min-w-0 flex-1 flex-col gap-1.5 text-xs font-semibold text-gray-600">
-          <label htmlFor="end-date">{t("endDate")}</label>
-          <input
+          <DatePickerField
             id="end-date"
-            type="date"
-            lang={localeFor(i18n.language)}
+            label={t("endDate")}
             value={endDate}
-            min={startDate || undefined}
+            minDate={selectedStartDate}
+            maxDate={maxDate}
+            rangeHelpId={RANGE_HELP_ID}
             onChange={onEndDateChange}
-            className="w-full rounded-lg border border-indigo-100 bg-white/90 px-3 py-2.5 text-sm font-medium text-gray-800 shadow-sm shadow-indigo-950/[0.03] transition-all hover:border-indigo-200 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 [color-scheme:light]"
           />
         </div>
+        <p id={RANGE_HELP_ID} className="text-xs font-normal text-gray-500">
+          {"* " + t("dateRangeInfo", { minDate: MIN_DATE, maxDate: MAX_DATE })}
+        </p>
       </div>
     </fieldset>
   );

@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { calculateTotalRevenue, calculateTotalRevenueByMonth } from "./calculateTotalRevenue";
-import type { Order, PriceGrid } from "../types";
+import {
+  calculateTotalRevenue,
+  calculateTotalRevenueByMonth,
+} from "../calculateTotalRevenue";
+import type { Order, PriceGrid } from "../../types";
 
 const prices: PriceGrid = {
   Cheese: { S: 10, M: 12, L: 14 },

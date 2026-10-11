@@ -2,6 +2,7 @@ import type { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import type { PizzaSize, PizzaType } from "../../types.ts";
 import type { MessageKey } from "../../i18n";
+import { PIZZA_SIZES } from "../../constants";
 
 interface PizzaFiltersProps {
   pizzaType: PizzaType | "";
@@ -17,7 +18,6 @@ const pizzaTypes: { value: PizzaType; label: MessageKey }[] = [
   { value: "Meatlovers", label: "meatlovers" },
   { value: "Pepperoni", label: "pepperoni" },
 ];
-const pizzaSizes: PizzaSize[] = ["S", "M", "L"];
 
 const PizzaFilters = ({
   pizzaType,
@@ -35,9 +35,7 @@ const PizzaFilters = ({
 
   return (
     <fieldset className="mb-2 flex w-full min-w-0 flex-col gap-2 border-0 p-0 sm:flex-row">
-      <legend className="sr-only">
-        {t("filterOrdersByPizza")}
-      </legend>
+      <legend className="sr-only">{t("filterOrdersByPizza")}</legend>
       <div className="flex min-w-0 flex-1 flex-col gap-1 text-left">
         <label
           htmlFor="pizza-type"
@@ -73,7 +71,7 @@ const PizzaFilters = ({
           className="w-full rounded-md border border-gray-200 bg-white px-2.5 py-1.5 text-xs text-gray-900 shadow-sm transition-colors hover:border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
         >
           <option value="">{t("allSizes")}</option>
-          {pizzaSizes.map((size) => (
+          {PIZZA_SIZES.map((size: PizzaSize) => (
             <option key={size} value={size}>
               {size}
             </option>

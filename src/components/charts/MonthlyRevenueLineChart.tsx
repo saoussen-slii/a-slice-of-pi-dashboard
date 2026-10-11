@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 import { prices } from "../../data";
 import type { Order } from "../../types.ts";
-import { CHART_COLORS } from "../../constants";
+import { CHART_COLORS, DASHBOARD_YEAR } from "../../constants";
 import { calculateTotalRevenueByMonth } from "../../utils";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
 import { localeFor } from "../../i18n";
@@ -34,9 +34,9 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
     }).format(Number(value));
 
   return (
-    <ChartCard title={`${t("monthlyRevenue")} 2023`}>
+    <ChartCard title={`${t("monthlyRevenue")} ${DASHBOARD_YEAR}`}>
       {monthlyRevenueData.length === 0 ? (
-        <ChartEmptyState />
+        <ChartEmptyState height={190} reserveFilterSpace />
       ) : (
         <ResponsiveContainer width="100%" height={240}>
           <AreaChart
@@ -81,7 +81,7 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
               tickMargin={10}
               tick={{ fill: "#94A3B8", fontSize: 11, fontWeight: 500 }}
               tickFormatter={(month: number) =>
-                new Date(2023, month, 1)
+                new Date(DASHBOARD_YEAR, month, 1)
                   .toLocaleString(locale, { month: "short" })
                   .replace(/\.$/, "")
               }

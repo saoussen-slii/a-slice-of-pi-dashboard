@@ -11,17 +11,22 @@ import {
 } from "recharts";
 import { useTranslation } from "react-i18next";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
-import { CHART_COLORS } from "../../constants";
-import type { Order, PizzaSize, StoreLocation } from "../../types.ts";
-import { localeFor } from "../../i18n";
+import { CHART_COLORS, PIZZA_SIZES } from "../../constants";
+import {
+  STORE_LOCATIONS,
+  type Order,
+  type PizzaSize,
+  type StoreLocation,
+} from "../../types.ts";
+import { formatNumber } from "../../utils";
 
 interface StoreSizeGroupedBarChartProps {
   orders: Order[];
 }
 
-const pizzaSizes: PizzaSize[] = ["S", "M", "L"];
-
-const StoreSizeGroupedBarChart = ({ orders }: StoreSizeGroupedBarChartProps) => {
+const StoreSizeGroupedBarChart = ({
+  orders,
+}: StoreSizeGroupedBarChartProps) => {
   const { t, i18n } = useTranslation();
   const salesByStore = useMemo(() => {
     const counts = new Map<StoreLocation, Record<PizzaSize, number>>();
@@ -34,13 +39,16 @@ const StoreSizeGroupedBarChart = ({ orders }: StoreSizeGroupedBarChartProps) => 
       });
     });
 
-    return Array.from(counts, ([store, sizes]) => ({ store, ...sizes }));
+    return STORE_LOCATIONS.flatMap((store) => {
+      const sizes = counts.get(store);
+      return sizes ? [{ store, ...sizes }] : [];
+    });
   }, [orders]);
 
   return (
     <ChartCard title={t("pizzaSalesBySize")}>
       {salesByStore.length === 0 ? (
-        <ChartEmptyState />
+        <ChartEmptyState height={190} reserveFilterSpace />
       ) : (
         <ResponsiveContainer width="100%" height={240}>
           <BarChart
@@ -93,7 +101,7 @@ const StoreSizeGroupedBarChart = ({ orders }: StoreSizeGroupedBarChartProps) => 
                 <ChartTooltip
                   {...props}
                   valueFormatter={(value) =>
-                    Number(value).toLocaleString(localeFor(i18n.language))
+                    formatNumber(Number(value), i18n.language)
                   }
                 />
               )}
@@ -102,7 +110,7 @@ const StoreSizeGroupedBarChart = ({ orders }: StoreSizeGroupedBarChartProps) => 
             <Legend
               content={() => (
                 <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pb-2 text-xs text-gray-500">
-                  {pizzaSizes.map((size, index) => (
+                  {PIZZA_SIZES.map((size: PizzaSize, index: number) => (
                     <li key={size} className="flex items-center gap-2">
                       <span
                         aria-hidden="true"
@@ -115,7 +123,7 @@ const StoreSizeGroupedBarChart = ({ orders }: StoreSizeGroupedBarChartProps) => 
                 </ul>
               )}
             />
-            {pizzaSizes.map((size) => (
+            {PIZZA_SIZES.map((size: PizzaSize) => (
               <Bar
                 key={size}
                 dataKey={size}

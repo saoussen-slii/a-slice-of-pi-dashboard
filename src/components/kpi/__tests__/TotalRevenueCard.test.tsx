@@ -1,17 +1,21 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import TotalRevenueCard from "./TotalRevenueCard";
+import TotalRevenueCard from "../TotalRevenueCard";
+import { DASHBOARD_YEAR } from "../../../constants";
 
 describe("TotalRevenueCard", () => {
   it("renders the revenue as a named region with a heading and amount", () => {
     render(<TotalRevenueCard />);
 
     const region = screen.getByRole("region", {
-      name: "Total Revenue / 2023",
+      name: `Total Revenue / ${DASHBOARD_YEAR}`,
     });
     expect(region).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Total Revenue / 2023", level: 2 }),
+      screen.getByRole("heading", {
+        name: `Total Revenue / ${DASHBOARD_YEAR}`,
+        level: 2,
+      }),
     ).toBeInTheDocument();
     expect(region).toHaveTextContent("$1,522");
   });
