@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import { useTranslation } from "react-i18next";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
-import { CHART_COLORS } from "../../constants";
+import { CHART_COLORS, PIZZA_SIZES } from "../../constants";
 import {
   STORE_LOCATIONS,
   type Order,
@@ -23,8 +23,6 @@ import { localeFor } from "../../i18n";
 interface StoreSizeGroupedBarChartProps {
   orders: Order[];
 }
-
-const pizzaSizes: PizzaSize[] = ["S", "M", "L"];
 
 const StoreSizeGroupedBarChart = ({
   orders,
@@ -112,7 +110,7 @@ const StoreSizeGroupedBarChart = ({
             <Legend
               content={() => (
                 <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pb-2 text-xs text-gray-500">
-                  {pizzaSizes.map((size, index) => (
+                  {PIZZA_SIZES.map((size: PizzaSize, index: number) => (
                     <li key={size} className="flex items-center gap-2">
                       <span
                         aria-hidden="true"
@@ -125,7 +123,7 @@ const StoreSizeGroupedBarChart = ({
                 </ul>
               )}
             />
-            {pizzaSizes.map((size) => (
+            {PIZZA_SIZES.map((size: PizzaSize) => (
               <Bar
                 key={size}
                 dataKey={size}

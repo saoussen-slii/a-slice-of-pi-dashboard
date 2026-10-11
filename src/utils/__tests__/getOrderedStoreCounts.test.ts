@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getOrderedStoreCounts } from "./getOrderedStoreCounts";
+import { getOrderedStoreCounts } from "../getOrderedStoreCounts";
 
 describe("getOrderedStoreCounts", () => {
   it("keeps the configured store order and omits stores without orders", () => {

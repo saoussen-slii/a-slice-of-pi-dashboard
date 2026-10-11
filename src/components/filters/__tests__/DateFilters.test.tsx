@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import DateFilters from "./DateFilters";
-import i18n from "../../i18n";
+import DateFilters from "../DateFilters";
+import i18n from "../../../i18n";
 
 describe("DateFilters", () => {
   it("renders accessible date pickers with ISO-formatted values", () => {
@@ -14,7 +14,9 @@ describe("DateFilters", () => {
       />,
     );
 
-    expect(screen.getByRole("group", { name: "Filter orders by date" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("group", { name: "Filter orders by date" }),
+    ).toBeInTheDocument();
     expect(screen.getByLabelText("Start date")).toHaveValue("2023-01-01");
     expect(screen.getByLabelText("End date")).toHaveValue("2023-12-31");
     expect(screen.getByLabelText("Start date")).toHaveAttribute(

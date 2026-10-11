@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ChartCard } from "./ChartCard";
+import { ChartCard } from "../ChartCard";
 
 describe("ChartCard", () => {
   it("exposes its visible title as a named region and heading", () => {
