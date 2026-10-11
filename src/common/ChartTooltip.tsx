@@ -4,8 +4,10 @@ import { CHART_COLORS } from "../constants";
 import { localeFor } from "../i18n";
 import type { MessageKey } from "../i18n";
 
-interface ChartTooltipProps
-  extends Pick<TooltipContentProps, "active" | "payload" | "label"> {
+interface ChartTooltipProps extends Pick<
+  TooltipContentProps,
+  "active" | "payload" | "label"
+> {
   valueFormatter?: (value: TooltipValueType) => string;
   monthLabel?: boolean;
 }

@@ -4,7 +4,7 @@ import type { Review, Sentiment } from "../../types.ts";
 import { REVIEW_SENTIMENTS } from "../../constants";
 import { getFrequencyCount } from "../../utils";
 import { ChartCard, ChartEmptyState, ChartTooltip } from "../../common";
-import { localeFor } from "../../i18n";
+import { formatNumber } from "../../utils";
 
 interface ReviewPieChartProps {
   reviews: Review[];
@@ -53,7 +53,7 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
                   <ChartTooltip
                     {...props}
                     valueFormatter={(value) =>
-                      Number(value).toLocaleString(localeFor(i18n.language))
+                      formatNumber(Number(value), i18n.language)
                     }
                   />
                 )}

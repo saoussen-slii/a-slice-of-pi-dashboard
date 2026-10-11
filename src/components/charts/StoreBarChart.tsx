@@ -13,11 +13,10 @@ import {
 } from "recharts";
 import type { BarShapeProps } from "recharts";
 import { CHART_COLORS } from "../../constants";
-import { getOrderedStoreCounts } from "../../utils";
+import { formatNumber, getOrderedStoreCounts } from "../../utils";
 import type { Order, PizzaSize, PizzaType } from "../../types.ts";
 import { PizzaFilters } from "../filters";
 import { ChartTooltip } from "../../common";
-import { localeFor } from "../../i18n";
 
 interface StoreBarChartProps {
   orders: Order[];
@@ -94,7 +93,7 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
                     <ChartTooltip
                       {...props}
                       valueFormatter={(value) =>
-                        Number(value).toLocaleString(localeFor(i18n.language))
+                        formatNumber(Number(value), i18n.language)
                       }
                     />
                   )}

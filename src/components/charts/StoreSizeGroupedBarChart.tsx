@@ -18,7 +18,7 @@ import {
   type PizzaSize,
   type StoreLocation,
 } from "../../types.ts";
-import { localeFor } from "../../i18n";
+import { formatNumber } from "../../utils";
 
 interface StoreSizeGroupedBarChartProps {
   orders: Order[];
@@ -101,7 +101,7 @@ const StoreSizeGroupedBarChart = ({
                 <ChartTooltip
                   {...props}
                   valueFormatter={(value) =>
-                    Number(value).toLocaleString(localeFor(i18n.language))
+                    formatNumber(Number(value), i18n.language)
                   }
                 />
               )}
