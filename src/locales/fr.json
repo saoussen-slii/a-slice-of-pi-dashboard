@@ -7,6 +7,7 @@
   "startDate": "Date de début",
   "endDate": "Date de fin",
   "dateFormatHint": "aaaa-mm-jj",
+  "dateRangeInfo": "Plage autorisée : du {{minDate}} au {{maxDate}}",
   "previousMonth": "Mois précédent",
   "nextMonth": "Mois suivant",
   "previousYear": "Année précédente",

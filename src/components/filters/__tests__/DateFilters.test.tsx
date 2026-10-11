@@ -21,11 +21,33 @@ describe("DateFilters", () => {
     expect(screen.getByLabelText("End date")).toHaveValue("2023-12-31");
     expect(screen.getByLabelText("Start date")).toHaveAttribute(
       "aria-describedby",
-      "start-date-help",
+      "start-date-format-help date-range-help",
     );
     expect(screen.getByLabelText("End date")).toHaveAttribute(
       "aria-describedby",
-      "end-date-help",
+      "end-date-format-help date-range-help",
+    );
+  });
+
+  it("shows the shared allowed date range above both fields", () => {
+    render(
+      <DateFilters
+        startDate="2023-01-01"
+        endDate="2023-05-31"
+        onStartDateChange={vi.fn()}
+        onEndDateChange={vi.fn()}
+      />,
+    );
+
+    const rangeInfo = screen.getByText(
+      "Allowed range: 2023-01-01 to 2023-12-31",
+    );
+    expect(rangeInfo).toBeVisible();
+    expect(
+      screen.getAllByText("Allowed range: 2023-01-01 to 2023-12-31"),
+    ).toHaveLength(1);
+    expect(rangeInfo.compareDocumentPosition(screen.getByLabelText("Start date"))).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
     );
   });
 

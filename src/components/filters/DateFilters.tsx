@@ -6,6 +6,7 @@ import DatePickerField from "./DatePickerField";
 
 const MIN_DATE = "2023-01-01";
 const MAX_DATE = "2023-12-31";
+const RANGE_HELP_ID = "date-range-help";
 const minDate = parseISO(MIN_DATE);
 const maxDate = parseISO(MAX_DATE);
 
@@ -29,23 +30,30 @@ const DateFilters = ({
   return (
     <fieldset className="flex h-full w-full min-w-0 flex-col justify-center rounded-xl border border-indigo-100 bg-gradient-to-br from-white via-white to-indigo-50/70 p-6 text-left shadow-sm sm:p-8">
       <legend className="sr-only">{t("filterOrdersByDate")}</legend>
-      <div className="flex flex-col gap-4 sm:flex-row">
-        <DatePickerField
-          id="start-date"
-          label={t("startDate")}
-          value={startDate}
-          minDate={minDate}
-          maxDate={selectedEndDate}
-          onChange={onStartDateChange}
-        />
-        <DatePickerField
-          id="end-date"
-          label={t("endDate")}
-          value={endDate}
-          minDate={selectedStartDate}
-          maxDate={maxDate}
-          onChange={onEndDateChange}
-        />
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <DatePickerField
+            id="start-date"
+            label={t("startDate")}
+            value={startDate}
+            minDate={minDate}
+            maxDate={selectedEndDate}
+            rangeHelpId={RANGE_HELP_ID}
+            onChange={onStartDateChange}
+          />
+          <DatePickerField
+            id="end-date"
+            label={t("endDate")}
+            value={endDate}
+            minDate={selectedStartDate}
+            maxDate={maxDate}
+            rangeHelpId={RANGE_HELP_ID}
+            onChange={onEndDateChange}
+          />
+        </div>
+        <p id={RANGE_HELP_ID} className="text-xs font-normal text-gray-500">
+          {"* " + t("dateRangeInfo", { minDate: MIN_DATE, maxDate: MAX_DATE })}
+        </p>
       </div>
     </fieldset>
   );

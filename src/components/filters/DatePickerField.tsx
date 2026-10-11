@@ -10,6 +10,7 @@ type DatePickerFieldProps = {
   value: string;
   minDate: Date;
   maxDate: Date;
+  rangeHelpId: string;
   onChange: (date: string) => void;
 };
 
@@ -19,17 +20,18 @@ const DatePickerField = ({
   value,
   minDate,
   maxDate,
+  rangeHelpId,
   onChange,
 }: DatePickerFieldProps) => {
   const { t, i18n } = useTranslation();
   const locale = localeFor(i18n.language) === "fr-CA" ? frCA : enCA;
   const selectedDate = value ? parseISO(value) : null;
-  const helpId = `${id}-help`;
+  const formatHelpId = `${id}-format-help`;
 
   return (
     <div className="flex min-w-0 flex-1 flex-col gap-2 text-xs font-semibold text-indigo-950">
       <label htmlFor={id}>{label}</label>
-      <span id={helpId} className="sr-only">
+      <span id={formatHelpId} className="sr-only">
         {t("dateFormatHint")}
       </span>
       <DatePicker
@@ -44,7 +46,7 @@ const DatePickerField = ({
         dateFormat="yyyy-MM-dd"
         locale={locale}
         strictParsing
-        ariaDescribedBy={helpId}
+        ariaDescribedBy={`${formatHelpId} ${rangeHelpId}`}
         previousMonthAriaLabel={t("previousMonth")}
         previousMonthButtonLabel={t("previousMonth")}
         nextMonthAriaLabel={t("nextMonth")}
