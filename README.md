@@ -10,6 +10,7 @@ Built with React, TypeScript, Vite, Tailwind CSS, Recharts, and React DatePicker
 ![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![Recharts](https://img.shields.io/badge/Charts-Recharts-8884d8)
+[![React DatePicker](https://img.shields.io/badge/Date%20picker-React%20DatePicker-6B4EFF)](https://github.com/Hacker0x01/react-datepicker)
 
 </div>
 
@@ -26,6 +27,7 @@ Built with React, TypeScript, Vite, Tailwind CSS, Recharts, and React DatePicker
 | **Monthly Revenue**               | Monthly revenue trend, with a lightly shaded area under the line.            |
 | **Store Performance**             | Order counts per store, filterable by pizza type and size.                   |
 | **Pizza Sales by Store and Size** | A grouped bar chart comparing small, medium, and large pizzas at each store. |
+| **Revenue by Store**              | Compares store revenue based on the configured price of each pizza sold.     |
 | **Review Sentiment**              | The distribution of customer review sentiment.                               |
 | **Total Revenue 2023**            | Revenue across all 2023 orders.                                              |
 
