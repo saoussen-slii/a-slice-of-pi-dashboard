@@ -18,7 +18,9 @@ Built with React, TypeScript, Vite, Tailwind CSS, Recharts, and React DatePicker
 
 ## 📸 Screenshot
 
-![A Slice of Pi dashboard screenshot](./screenshots/slice-of-pi-dashboard.png)
+| Desktop | Mobile |
+| --- | --- |
+| ![A Slice of Pi dashboard on desktop](./screenshots/slice-of-pi-dashboard.png) | ![A Slice of Pi dashboard on mobile](./screenshots/slice-of-pi-dashboard-mobile.png) |
 
 ## ✨ Dashboard highlights
 
