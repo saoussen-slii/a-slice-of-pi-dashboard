@@ -1,5 +1,5 @@
 {
-  "dashboardTitle": "🍕 Slice of Pi Dashboard",
+  "dashboardTitle": "Slice of Pi Dashboard",
   "dashboardCharts": "Dashboard charts",
   "totalRevenue": "Total Revenue",
   "filterOrdersByDate": "Filter orders by date",
@@ -30,6 +30,8 @@
   "happy": "Happy",
   "sad": "Sad",
   "pizzaSalesBySize": "Pizza Sales by Store and Size",
+  "revenueByStore": "Revenue by Store",
+  "revenue": "Revenue",
   "size": "Size",
   "noData": "No data available",
   "adjustFilters": "Try adjusting the selected date range or filters.",

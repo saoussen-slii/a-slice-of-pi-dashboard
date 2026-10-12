@@ -11,7 +11,7 @@ export const ChartCard = ({ title, children }: ChartCardProps) => {
   return (
     <section
       aria-labelledby={titleId}
-      className="chart-card group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 text-left shadow-sm transition-shadow duration-200 hover:border-indigo-100 hover:shadow-lg hover:shadow-indigo-950/5"
+      className="chart-card group flex h-full min-w-0 flex-col gap-2 rounded-xl border border-gray-100 bg-white p-3 text-left shadow-sm transition-shadow duration-200 hover:border-indigo-100 hover:shadow-lg hover:shadow-indigo-950/5 sm:p-4"
     >
       <header className="flex items-center gap-2.5">
         <span
@@ -20,7 +20,7 @@ export const ChartCard = ({ title, children }: ChartCardProps) => {
         />
         <h2 id={titleId}>{title}</h2>
       </header>
-      <div>{children}</div>
+      <div className="chart-card-content min-h-0 flex-1">{children}</div>
     </section>
   );
 };

@@ -34,6 +34,12 @@ const ChartEmptyState = ({
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
+              <path
+                d="m5 5 14 14"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+              />
             </svg>
           </span>
           <p className="text-sm font-semibold text-gray-800">{t("noData")}</p>

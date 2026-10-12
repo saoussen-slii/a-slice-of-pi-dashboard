@@ -1,5 +1,6 @@
-import type { Order, OrderItem, PriceGrid } from "../types.ts";
+import type { Order, OrderItem, PriceGrid, StoreLocation } from "../types.ts";
 import { DASHBOARD_YEAR } from "../constants";
+import { STORE_LOCATIONS } from "../types.ts";
 
 const getOrderItemsForYear = (orders: Order[], targetYear: number) =>
   orders
@@ -40,4 +41,27 @@ export const calculateTotalRevenueByMonth = (
   return Object.entries(monthlyRevenue)
     .map(([month, revenue]) => ({ month: Number(month), revenue }))
     .sort((first, second) => first.month - second.month);
+};
+
+export const calculateRevenueByStore = (
+  orders: Order[],
+  prices: PriceGrid,
+): { store: StoreLocation; revenue: number }[] => {
+  const revenueByStore = new Map<StoreLocation, number>();
+
+  orders.forEach((order) => {
+    const orderRevenue = order.items.reduce(
+      (total, item) => total + getItemRevenue(item, prices),
+      0,
+    );
+    revenueByStore.set(
+      order.store,
+      (revenueByStore.get(order.store) ?? 0) + orderRevenue,
+    );
+  });
+
+  return STORE_LOCATIONS.flatMap((store) => {
+    const revenue = revenueByStore.get(store);
+    return revenue ? [{ store, revenue }] : [];
+  });
 };

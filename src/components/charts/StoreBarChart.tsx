@@ -48,7 +48,7 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
       {orders.length === 0 ? (
         <ChartEmptyState height={190} reserveFilterSpace />
       ) : (
-        <div className="mb-1">
+        <div className="mb-1 flex h-full min-h-0 flex-col">
           <PizzaFilters
             pizzaType={pizzaType}
             pizzaSize={pizzaSize}
@@ -58,7 +58,8 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
           {storeCounts.length === 0 ? (
             <ChartEmptyState height={190} />
           ) : (
-            <ResponsiveContainer width="100%" height={190}>
+            <div className="min-h-0 flex-1">
+              <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={storeCounts}
                 margin={{ top: 12, right: 12, left: 2, bottom: 4 }}
@@ -114,7 +115,8 @@ const StoreBarChart = ({ orders }: StoreBarChartProps) => {
                   )}
                 />
               </BarChart>
-            </ResponsiveContainer>
+              </ResponsiveContainer>
+            </div>
           )}
         </div>
       )}

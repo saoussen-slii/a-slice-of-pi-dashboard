@@ -12,7 +12,7 @@ const TotalRevenueCard = () => {
   return (
     <section
       aria-labelledby="total-revenue-title"
-      className="w-full rounded-xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-cyan-50/70 p-6 text-left shadow-sm sm:p-8"
+      className="w-full rounded-xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-cyan-50/70 p-3 text-left shadow-sm sm:p-4"
     >
       <div className="flex items-start justify-between gap-4">
         <div>
