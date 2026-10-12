@@ -27,7 +27,7 @@ const DateFilters = ({
   const selectedEndDate = endDate ? parseISO(endDate) : maxDate;
 
   return (
-    <fieldset className="flex h-full w-full min-w-0 flex-col justify-center rounded-xl border border-indigo-100 bg-gradient-to-br from-white via-white to-indigo-50/70 p-6 text-left shadow-sm sm:p-8">
+    <fieldset className="flex h-full w-full min-w-0 flex-col justify-center rounded-xl border border-indigo-100 bg-gradient-to-br from-white via-white to-indigo-50/70 p-3 text-left shadow-sm sm:p-4">
       <legend className="sr-only">{t("filterOrdersByDate")}</legend>
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-4 sm:flex-row">

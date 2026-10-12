@@ -38,7 +38,7 @@ const MonthlyRevenueLineChart = ({ orders }: MonthlyRevenueLineChartProps) => {
       {monthlyRevenueData.length === 0 ? (
         <ChartEmptyState height={190} reserveFilterSpace />
       ) : (
-        <ResponsiveContainer width="100%" height={240}>
+        <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={monthlyRevenueData}
             margin={{

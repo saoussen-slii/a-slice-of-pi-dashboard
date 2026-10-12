@@ -36,8 +36,8 @@ const App = () => {
       lang={selectedLanguage}
       className="flex h-dvh w-full min-w-0 flex-col overflow-hidden bg-gray-50"
     >
-      <header className="shrink-0 border-b border-indigo-100 bg-indigo-50 px-4 py-3 text-indigo-950 shadow-sm sm:px-6">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+      <header className="shrink-0 border-b border-indigo-100 bg-indigo-50 px-4 py-2.5 text-indigo-950 shadow-sm sm:px-6">
+        <div className="flex w-full items-center justify-between gap-3">
           <h1 className="m-0 min-w-0 text-left text-base font-semibold tracking-tight text-indigo-950 sm:text-xl">
             {t("dashboardTitle")}
           </h1>
@@ -66,8 +66,8 @@ const App = () => {
         </div>
       </header>
 
-      <main className="mx-auto flex min-h-0 w-full min-w-0 max-w-7xl flex-1 flex-col px-4 pb-4 pt-6 sm:px-6 sm:pb-6 lg:px-8">
-        <div className="mb-6 grid w-full shrink-0 grid-cols-1 items-stretch gap-4 md:grid-cols-2 md:gap-6">
+      <main className="flex min-h-0 w-full min-w-0 flex-1 flex-col px-3 pb-3 pt-4 sm:px-6 sm:pb-4 sm:pt-5">
+        <div className="mb-4 grid w-full shrink-0 grid-cols-1 items-stretch gap-4 md:grid-cols-2 md:gap-6">
           <TotalRevenueCard />
           <div className="w-full">
             <DateFilters
@@ -81,12 +81,10 @@ const App = () => {
         <section
           aria-label={t("dashboardCharts")}
           tabIndex={0}
-          className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-1 pb-2 pt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
+          className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-0 pb-2 pt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
         >
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div className="md:col-span-2">
-              <MonthlyRevenueLineChart orders={filteredOrders} />
-            </div>
+          <div className="grid grid-cols-1 gap-4 auto-rows-[minmax(280px,auto)] md:h-full md:grid-cols-2 md:grid-rows-[repeat(2,minmax(250px,1fr))] md:gap-6">
+            <MonthlyRevenueLineChart orders={filteredOrders} />
             <StoreBarChart orders={filteredOrders} />
             <ReviewPieChart reviews={filteredReviews} />
             <StoreSizeGroupedBarChart orders={filteredOrders} />

@@ -29,7 +29,7 @@ describe("DateFilters", () => {
     );
   });
 
-  it("shows the shared allowed date range above both fields", () => {
+  it("shows the shared allowed date range below both fields", () => {
     render(
       <DateFilters
         startDate="2023-01-01"
@@ -40,15 +40,15 @@ describe("DateFilters", () => {
     );
 
     const rangeInfo = screen.getByText(
-      "Allowed range: 2023-01-01 to 2023-12-31",
+      "* Allowed range: 2023-01-01 to 2023-12-31",
     );
     expect(rangeInfo).toBeVisible();
     expect(
-      screen.getAllByText("Allowed range: 2023-01-01 to 2023-12-31"),
+      screen.getAllByText("* Allowed range: 2023-01-01 to 2023-12-31"),
     ).toHaveLength(1);
-    expect(rangeInfo.compareDocumentPosition(screen.getByLabelText("Start date"))).toBe(
-      Node.DOCUMENT_POSITION_FOLLOWING,
-    );
+    expect(
+      rangeInfo.compareDocumentPosition(screen.getByLabelText("Start date")),
+    ).toBe(Node.DOCUMENT_POSITION_PRECEDING);
   });
 
   it("selects a date using keyboard navigation and returns ISO format", () => {

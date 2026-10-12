@@ -33,8 +33,8 @@ const ReviewPieChart = ({ reviews }: ReviewPieChartProps) => {
       {sentimentCounts.length === 0 ? (
         <ChartEmptyState height={190} reserveFilterSpace />
       ) : (
-        <div className="pt-2">
-          <ResponsiveContainer width="100%" height={200}>
+        <div className="flex h-full min-h-0 flex-col pt-2">
+          <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={sentimentCounts}
