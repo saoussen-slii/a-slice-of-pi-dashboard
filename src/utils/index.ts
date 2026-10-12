@@ -2,6 +2,7 @@ export { getFrequencyCount } from "./getFrequencyCount.ts";
 export {
   calculateTotalRevenue,
   calculateTotalRevenueByMonth,
+  calculateRevenueByStore,
 } from "./calculateTotalRevenue.ts";
 export { filterByDateRange } from "./filterByDateRange.ts";
 export { getOrderedStoreCounts } from "./getOrderedStoreCounts.ts";

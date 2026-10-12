@@ -5,6 +5,7 @@ import {
   StoreBarChart,
   MonthlyRevenueLineChart,
   StoreSizeGroupedBarChart,
+  StoreRevenueChart,
 } from "./components/charts";
 import { DateFilters } from "./components/filters";
 import TotalRevenueCard from "./components/kpi";
@@ -39,6 +40,7 @@ const App = () => {
       <header className="shrink-0 border-b border-indigo-100 bg-indigo-50 px-4 py-2.5 text-indigo-950 shadow-sm sm:px-6">
         <div className="flex w-full items-center justify-between gap-3">
           <h1 className="m-0 min-w-0 text-left text-base font-semibold tracking-tight text-indigo-950 sm:text-xl">
+            <span aria-hidden="true">🍕 </span>
             {t("dashboardTitle")}
           </h1>
           <div
@@ -83,11 +85,16 @@ const App = () => {
           tabIndex={0}
           className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-0 pb-2 pt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
         >
-          <div className="grid grid-cols-1 gap-4 auto-rows-[minmax(280px,auto)] md:h-full md:grid-cols-2 md:grid-rows-[repeat(2,minmax(250px,1fr))] md:gap-6">
-            <MonthlyRevenueLineChart orders={filteredOrders} />
-            <StoreBarChart orders={filteredOrders} />
-            <ReviewPieChart reviews={filteredReviews} />
-            <StoreSizeGroupedBarChart orders={filteredOrders} />
+          <div className="flex h-full min-h-full flex-col gap-4 md:gap-6">
+            <div className="grid flex-1 auto-rows-[minmax(280px,1fr)] grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+              <MonthlyRevenueLineChart orders={filteredOrders} />
+              <ReviewPieChart reviews={filteredReviews} />
+            </div>
+            <div className="grid flex-1 auto-rows-[minmax(280px,1fr)] grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3">
+              <StoreSizeGroupedBarChart orders={filteredOrders} />
+              <StoreRevenueChart orders={filteredOrders} />
+              <StoreBarChart orders={filteredOrders} />
+            </div>
           </div>
         </section>
       </main>

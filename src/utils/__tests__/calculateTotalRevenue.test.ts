@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   calculateTotalRevenue,
   calculateTotalRevenueByMonth,
+  calculateRevenueByStore,
 } from "../calculateTotalRevenue";
 import type { Order, PriceGrid } from "../../types";
 
@@ -67,5 +68,19 @@ describe("calculateTotalRevenueByMonth", () => {
 
   it("returns no months when there are no matching orders", () => {
     expect(calculateTotalRevenueByMonth([], prices)).toEqual([]);
+  });
+});
+
+describe("calculateRevenueByStore", () => {
+  it("aggregates item revenue per store in configured store order", () => {
+    expect(calculateRevenueByStore(orders, prices)).toEqual([
+      { store: "Kanata", revenue: 28 },
+      { store: "Orleans", revenue: 16 },
+      { store: "Downtown", revenue: 15 },
+    ]);
+  });
+
+  it("returns no stores when there are no orders", () => {
+    expect(calculateRevenueByStore([], prices)).toEqual([]);
   });
 });

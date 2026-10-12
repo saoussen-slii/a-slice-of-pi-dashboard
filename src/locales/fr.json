@@ -1,5 +1,5 @@
 {
-  "dashboardTitle": "🍕 Tableau de bord Slice of Pi",
+  "dashboardTitle": "Tableau de bord Slice of Pi",
   "dashboardCharts": "Graphiques du tableau de bord",
   "totalRevenue": "Chiffre d’affaires",
   "filterOrdersByDate": "Filtrer les commandes par date",
@@ -30,6 +30,8 @@
   "happy": "Satisfait(e)",
   "sad": "Triste",
   "pizzaSalesBySize": "Ventes de pizzas par restaurant et taille",
+  "revenueByStore": "Chiffre d’affaires par restaurant",
+  "revenue": "Chiffre d’affaires",
   "size": "Taille",
   "noData": "Aucune donnée disponible",
   "adjustFilters": "Essayez de modifier la période ou les filtres sélectionnés.",
